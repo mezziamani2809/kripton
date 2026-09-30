@@ -1,0 +1,350 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <record id="project_project_view_form" model="ir.ui.view">
+        <field name="name">project.project.form.inherit</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="multi_vendor_id" widget="many2many_tags" string="Consultants"/>
+            </xpath>
+        </field>
+    </record>
+    <record model='ir.ui.view' id='consultant_space_form_view'>
+        <field name="name">consultant.space.form</field>
+        <field name="model">consultant.space</field>
+        <field name="arch" type="xml">
+            <form string="Add Timesheet">
+                <header>
+                    <button name="action_to_send" string="Send Timescheet" class="btn btn-primary o_form_button_edit"
+                            type="object" attrs="{'invisible': [('is_send', '!=', False)]}"/>
+                    <button name="action_to_check" string="Timescheet Checked"
+                            type="object" groups="hr_timesheet.group_hr_timesheet_approver"
+                            attrs="{'invisible': [('state', '=', 'checked')]}"/>
+                    <button name="action_consultant_space_delete" string="Delete" type="object" class="btn-danger"
+                            groups="hr_timesheet.group_hr_timesheet_approver"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,to_check,checked"/>
+                </header>
+                <sheet>
+                    <field name="timesheet_ids" mode="tree">
+                        <tree editable="bottom" string="Timesheet" default_order="date">
+                            <field name="date" widget='month_year_format'/>
+                            <field name="end_date" invisible="1"/>
+                            <field name="consultant_id" invisible="0" domain="[('supplier_rank','>', 0),('is_company', '=', False)]"
+                                   groups="hr_timesheet.group_hr_timesheet_approver"/>
+                            <field name="project_id"/>
+                            <field name="task_id"/>
+                            <field name="name" required="0" invisible="1"/>
+                            <field name="unit_amount" widget="timesheet_uom"
+                                   decoration-danger="unit_amount &gt; 24" string="Hours Spent"/>
+                            <field name="company_id" invisible="1"/>
+                        </tree>
+                    </field>
+                    <group>
+                        <field name="timesheet_attachment" class="oe_drag_and_drop" filename="timesheet_name"
+                               widget="drag_and_drop"/>
+                        <field name="timesheet_name" invisible="1"/>
+                        <field name="invoice_state" widget="badge" optional="show" invisible="1"/>
+                    </group>
+
+                    <group>
+                        <group>
+                            <field name="project_id" invisible="1"/>
+                            <field name="date" invisible="1"/>
+                            <field name="end_date" invisible="1"/>
+                            <field name="user_id" invisible="1"/>
+                            <field name="is_employee" invisible="1"/>
+                            <field name="consultant_id" invisible="1"
+                                   groups="hr_timesheet.group_hr_timesheet_approver"/>
+                            <field name="is_send" invisible="0"/>
+
+                        </group>
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+    <record model='ir.ui.view' id='consultant_space_tree_view_'>
+        <field name="name">consultant.space.form</field>
+        <field name="model">consultant.space</field>
+        <field name="arch" type="xml">
+            <tree string="Add Timesheet">
+                <header>
+                    <button name="add_timesheet_all_" string="Confirm"
+                            type="object" attrs="{'invisible': [('state', '!=', 'draft')]}"
+                            groups="hr_timesheet.group_hr_timesheet_approver"/>
+                    <button name="action_to_check" string="Timescheet Checked"
+                            type="object" groups="hr_timesheet.group_hr_timesheet_approver"/>
+
+                    <button name="action_consultant_space_delete" string="Delete" type="object" class="btn-danger"
+                            groups="hr_timesheet.group_hr_timesheet_approver"/>
+                </header>
+                <field name="date" widget='month_year_format'/>
+                <field name="end_date" invisible="1"/>
+                <field name="project_id"/>
+                <field name="consultant_id" groups="hr_timesheet.group_hr_timesheet_approver"/>
+                <field name="state" widget="badge"
+                       decoration-success="state == 'checked'" decoration-info="state == 'draft'"
+                       optional="show"/>
+                <field name="timesheet_attachment" class="oe_drag_and_drop" filename="timesheet_name"
+                       widget="drag_and_drop"/>
+                <field name="timesheet_name" invisible="1"/>
+                <button string="Open Client Contract" type="object" class="btn btn-primary o_list_button_add"
+                        name="open_related_form" attrs="{'invisible': [('project_id', '=', False)]}"
+                        groups="hr_timesheet.group_hr_timesheet_approver"/>
+            </tree>
+        </field>
+    </record>
+    <record id="consultant_space_action" model="ir.actions.act_window">
+        <field name="name">My Timesheets</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">consultant.space</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="kripton_timesheet.consultant_space_tree_view_"/>
+        <field name="domain">[('project_id', '!=', False), ('user_id', '=', uid)]</field>
+        <field name="context">{
+            "search_default_week":1,
+            'delete': False,
+            }
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No activities found. Let's start a new one!
+            </p>
+            <p>
+                Track your working hours by projects every day and invoice this time to your customers.
+            </p>
+        </field>
+    </record>
+    <record id="consultant_space_action_all" model="ir.actions.act_window">
+        <field name="name">All Timesheets</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">consultant.space</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="kripton_timesheet.consultant_space_form_view"/>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('kripton_timesheet.consultant_space_tree_view_')})]"/>
+        <field name="domain">[('project_id', '!=', False)]</field>
+        <field name="context">{
+            'search_default_week':1,
+            "search_default_not_checked_filter":1
+
+
+            }
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No activities found. Let's start a new one!
+            </p>
+            <p>
+                Track your working hours by projects every day and invoice this time to your customers.
+            </p>
+        </field>
+    </record>
+    <menuitem id="menu_consultantspace_"
+              name="Timesheets"
+              web_icon="kripton_base,static/description/account.png"
+              groups="hr_timesheet.group_hr_timesheet_approver"
+              sequence="77"/>
+
+
+    <!--    Invoices-->
+
+    <record model='ir.ui.view' id='invoice_consultant_space_form_view'>
+        <field name="name">consultant.space.form</field>
+        <field name="model">consultant.space</field>
+        <field name="arch" type="xml">
+            <form string="Add Timesheet">
+                <header>
+                    <button name="action_to_paid_" string="Generated"
+                            type="object" groups="hr_timesheet.group_hr_timesheet_approver"
+                            attrs="{'invisible': [('invoice_state', '=', 'paid')]}"/>
+                    <button name="action_consultant_space_delete" string="Delete" type="object" class="btn-danger"
+                            groups="hr_timesheet.group_hr_timesheet_approver"/>
+                    <field name="invoice_state" widget="statusbar" statusbar_visible="not_paid,paid"/>
+
+                </header>
+                <sheet>
+                    <field name="timesheet_ids" mode="tree">
+                        <tree editable="bottom" string="Timesheet" default_order="date">
+                            <field name="date" widget='month_year_format'/>
+                            <field name="end_date" invisible="1"/>
+                            <field name="consultant_id" invisible="0" domain="[('supplier_rank','>', 0),('is_company', '=', False)]"
+                                   groups="hr_timesheet.group_hr_timesheet_approver"/>
+                            <field name="project_id"/>
+                            <field name="task_id"/>
+                            <field name="name" required="0" invisible="1"/>
+                            <field name="unit_amount" widget="timesheet_uom"
+                                   decoration-danger="unit_amount &gt; 24" string="Hours Spent"/>
+                            <field name="company_id" invisible="1"/>
+                        </tree>
+                    </field>
+                    <group>
+                        <field name="project_id" invisible="1"/>
+                        <field name="timesheet_attachment" class="oe_drag_and_drop" filename="timesheet_name"
+                               widget="drag_and_drop" readonly="1"/>
+                        <field name="timesheet_name" invisible="1"/>
+
+                    </group>
+                    <group>
+                        <field name="invoice_name" invisible="1"/>
+
+                        <field name="invoice_attachment" class="oe_drag_and_drop" filename="invoice_name"
+                               widget="drag_and_drop"/>
+                        <field name="state" widget="badge"
+                               optional="show"/>
+                    </group>
+                    <group>
+
+                        <group>
+                            <field name="project_id" invisible="1"/>
+                            <field name="date" invisible="1"/>
+                            <field name="end_date" invisible="1"/>
+                            <field name="user_id" invisible="1"/>
+                            <field name="consultant_id" groups="hr_timesheet.group_hr_timesheet_approver"/>
+                            <field name="is_employee" invisible="1"/>
+
+                        </group>
+
+                    </group>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+    <record model='ir.ui.view' id='consultant_space_tree_view_invoice'>
+        <field name="name">consultant.space.tree</field>
+        <field name="model">consultant.space</field>
+        <field name="arch" type="xml">
+            <tree string="Add Invoices">
+                <header>
+                    <button name="action_to_paid_" string="Generated"
+                            type="object" groups="hr_timesheet.group_hr_timesheet_approver"
+                            attrs="{'invisible': [('invoice_state', '=', 'paid')]}"/>
+                    <button name="action_consultant_space_delete" string="Delete" type="object" class="btn-danger"
+                            groups="hr_timesheet.group_hr_timesheet_approver"/>
+                </header>
+                <field name="date" widget='month_year_format'/>
+                <field name="end_date" invisible="1"/>
+                <field name="project_id"/>
+                <field name="consultant_id"/>
+                <field name="invoice_state" widget="badge"
+                       decoration-success="invoice_state == 'paid'" decoration-info="invoice_state == 'not_paid'"
+                       optional="show"/>
+                <field name="invoice_attachment" class="oe_drag_and_drop" filename="invoice_name"
+                       widget="drag_and_drop"/>
+                <field name="invoice_name" invisible="1"/>
+
+
+            </tree>
+        </field>
+    </record>
+    <record id="consultant_space_action_invoice" model="ir.actions.act_window">
+        <field name="name">My Incoices</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">consultant.space</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="kripton_timesheet.invoice_consultant_space_form_view"/>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('kripton_timesheet.consultant_space_tree_view_invoice')})]"/>
+        <field name="domain">[('project_id', '!=', False), ('user_id', '=', uid)]</field>
+        <field name="context">{
+            "search_default_week":1,
+            'create': False,
+            'edit': True,
+            'delete': False,
+
+            }
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No activities found. Let's start a new one!
+            </p>
+            <p>
+                Track your working hours by projects every day and invoice this time to your customers.
+            </p>
+        </field>
+    </record>
+    <record id="consultant_space_action_all_invoices" model="ir.actions.act_window">
+        <field name="name">All Invoices</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">consultant.space</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="kripton_timesheet.invoice_consultant_space_form_view"/>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('kripton_timesheet.consultant_space_tree_view_invoice')})]"/>
+        <field name="domain">[('project_id', '!=', False),('state', '=', 'checked'), ('is_employee', '=', False)]
+        </field>
+        <field name="context">{
+            'search_default_week':1,
+            'create': False,
+            'edit': True,
+
+            }
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                No activities found. Let's start a new one!
+            </p>
+            <p>
+                Track your working hours by projects every day and invoice this time to your customers.
+            </p>
+        </field>
+    </record>
+    <record id="hr_timesheet.timesheet_menu_root" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+    <record id="hr_timesheet.timesheet_menu_activity_user" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+    <record id="consultant_space_view_filter" model="ir.ui.view">
+        <field name="name">consultant.space.form.list.select</field>
+        <field name="model">consultant.space</field>
+        <field name="arch" type="xml">
+            <search string="Search Consultant Space">
+                <filter string="Employees" domain="[('is_employee', '=', True)]" name="employee_filter"/>
+                <filter string="Consultants" domain="[('is_employee', '=', False)]" name="consultants_filter"/>
+                <filter string="Not Checked" domain="[('state', '=', 'draft')]" name="not_checked_filter"/>
+                <filter string="Checked" domain="[('state', '=', 'checked')]" name="checked_filter"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_date" string="Start Date" domain="[]" context="{'group_by': 'date'}"/>
+                    <filter name="group_end_date" string="End Date" domain="[]" context="{'group_by': 'end_date'}"/>
+                    <filter name="group_state" string="Timesheets Status" domain="[]" context="{'group_by': 'state'}"/>
+                    <filter name="group_invoice_state" string="Invoices Status" domain="[]"
+                            context="{'group_by': 'invoice_state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    <!--   consultant view-->
+    <menuitem id="menu_consultantspace_my_Timesheet"
+              name="My Timesheets"
+              web_icon="kripton_base,static/description/account.png"
+              groups="hr_timesheet.group_hr_timesheet_user"
+              action="kripton_timesheet.consultant_space_action"/>
+    <menuitem id="menu_consultantspace_my_invoices"
+              name="My Invoices"
+              sequence="10"
+              web_icon="kripton_base,static/description/account.png"
+              groups="hr_timesheet.group_hr_timesheet_user"
+              action="kripton_timesheet.consultant_space_action_invoice"/>
+
+    <!--   admin view-->
+
+
+    <menuitem id="menu_consultantspace_all_Timesheet"
+              name="All Timesheets"
+              sequence="2"
+              groups="hr_timesheet.group_hr_timesheet_approver"
+              parent="kripton_timesheet.menu_consultantspace_"
+              action="kripton_timesheet.consultant_space_action_all"/>
+    <menuitem id="menu_consultantspace_all_invoices"
+              name="All Invoices"
+              sequence="10"
+              parent="kripton_timesheet.menu_consultantspace_"
+              groups="hr_timesheet.group_hr_timesheet_approver"
+              action="kripton_timesheet.consultant_space_action_all_invoices"/>
+</odoo>

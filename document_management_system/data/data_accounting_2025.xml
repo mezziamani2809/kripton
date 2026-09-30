@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="sapres_rep_2025" model="document.document">
+            <field name="name">2025</field>
+        </record>
+        <!--                01 Januar        -->
+
+        <record id="sapres_sous_rep_januar_2025" model="document.document">
+            <field name="name">01 Januar</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_januar_KONTOAUSZÜGE_2025" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_2025"/>
+        </record>
+        <record id="sapres_sous_rep_januar_ausgangsrechnungen_2025" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_2025"/>
+        </record>
+        <record id="sapres_sous_rep_januar_eingangsrechnungen_2025" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_2025"/>
+        </record>
+        <record id="sapres_sous_rep_januar_kasse_2025" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_2025"/>
+        </record>
+        <record id="sapres_sous_rep_januar_postbank_2025" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_2025"/>
+        </record>
+        <record id="sapres_sous_rep_januar_postbank_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_postbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_januar_volksbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_2025"/>
+        </record>
+        <record id="sapres_sous_rep_januar_volksbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_volksbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_januar_volksbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_volksbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_januar_volksbank_konto_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_volksbank_konto_2025"/>
+        </record>
+
+            <record id="sapres_sous_rep_februar_volksbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_2025"/>
+        </record>
+        <record id="sapres_sous_rep_februar_volksbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_volksbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_februar_volksbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_volksbank_2025"/>
+        </record>
+
+
+        <!--              02 Februar      -->
+
+        <record id="sapres_sous_rep_februar_2025" model="document.document">
+            <field name="name">02 Februar</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2025"/>
+        </record>
+        <record id="sapres_sous_rep_februar_KONTOAUSZÜGE_2025" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_2025"/>
+        </record>
+        <record id="sapres_sous_rep_februar_ausgangsrechnungen_2025" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_2025"/>
+        </record>
+        <record id="sapres_sous_rep_februar_eingangsrechnungen_2025" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_2025"/>
+        </record>
+        <record id="sapres_sous_rep_februar_kasse_2025" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_februar_postbank_2025" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_2025"/>
+        </record>
+        <record id="sapres_sous_rep_februar_postbank_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_postbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_februar_volksbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_2025"/>
+        </record>
+        <record id="sapres_sous_rep_februar_volksbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_volksbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_februar_volksbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_volksbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_februar_volksbank_konto_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_volksbank_konto_2025"/>
+        </record>
+
+
+
+        <!--             03 März     -->
+
+
+        <record id="sapres_sous_rep_marz_2025" model="document.document">
+            <field name="name">03 März</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2025"/>
+        </record>
+        <record id="sapres_sous_rep_marz_KONTOAUSZÜGE_2025" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_2025"/>
+        </record>
+        <record id="sapres_sous_rep_marz_ausgangsrechnungen_2025" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_2025"/>
+        </record>
+        <record id="sapres_sous_rep_marz_eingangsrechnungen_2025" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_2025"/>
+        </record>
+        <record id="sapres_sous_rep_marz_kasse_2025" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_marz_postbank_2025" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_2025"/>
+        </record>
+        <record id="sapres_sous_rep_marz_postbank_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_postbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_marz_volksbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_2025"/>
+        </record>
+        <record id="sapres_sous_rep_marz_volksbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_volksbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_marz_volksbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_volksbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_marz_volksbank_konto_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_volksbank_konto_2025"/>
+        </record>
+
+
+        <!--             04 April      -->
+
+
+        <record id="sapres_sous_rep_aprel_2025" model="document.document">
+            <field name="name">04 April</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2025"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_KONTOAUSZÜGE_2025" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_2025"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_ausgangsrechnungen_2025" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_2025"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_eingangsrechnungen_2025" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_2025"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_kasse_2025" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_aprel_postbank_2025" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_2025"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_postbank_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_postbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_aprel_volsbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_2025"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_volsbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_volsbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_volsbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_volsbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_aprel_volsbank_konto_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_volsbank_konto_2025"/>
+        </record>
+
+        <!--             05 Mai     -->
+
+        <record id="sapres_sous_rep_mai_2025" model="document.document">
+            <field name="name">05 Mai</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2025"/>
+        </record>
+        <record id="sapres_sous_rep_mai_KONTOAUSZÜGE_2025" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_2025"/>
+        </record>
+        <record id="sapres_sous_rep_mai_ausgangsrechnungen_2025" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_2025"/>
+        </record>
+        <record id="sapres_sous_rep_mai_eingangsrechnungen_2025" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_2025"/>
+        </record>
+        <record id="sapres_sous_rep_mai_kasse_2025" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_mai_postbank_2025" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_2025"/>
+        </record>
+        <record id="sapres_sous_rep_mai_postbank_k_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_postbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_mai_volksbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_2025"/>
+        </record>
+        <record id="sapres_sous_rep_mai_volksbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_volksbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_mai_volksbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_volksbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_mai_volksbank_konto_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_volksbank_konto_2025"/>
+        </record>
+
+
+        <!--            06 Juni   -->
+
+        <record id="sapres_sous_rep_juni_2025" model="document.document">
+            <field name="name">06 Juni</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juni_KONTOAUSZÜGE_2025" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juni_ausgangsrechnungen_2025" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juni_eingangsrechnungen_2025" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juni_kasse_2025" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_juni_postbank_2025" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juni_postbank_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_postbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_juni_volksbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juni_volksbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_volksbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juni_volksbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_volksbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_juni_volksbank_konto_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_volksbank_konto_2025"/>
+        </record>
+
+
+        <!--             07 Juli    -->
+
+        <record id="sapres_sous_rep_juli_2025" model="document.document">
+            <field name="name">07 Juli</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juli_KONTOAUSZÜGE_2025" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juli_ausgangsrechnungen_2025" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juli_eingangsrechnungen_2025" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juli_kasse_2025" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_juli_postbank_2025" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juli_postbank_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_postbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_juli_volksbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juli_volksbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_volksbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_juli_volksbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_volksbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_juli_volksbank_konto_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_volksbank_konto_2025"/>
+        </record>
+
+        <!--              08 August    -->
+
+        <record id="sapres_sous_rep_august_2025" model="document.document">
+            <field name="name">08 August</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2025"/>
+        </record>
+        <record id="sapres_sous_rep_august_KONTOAUSZÜGE_2025" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_2025"/>
+        </record>
+        <record id="sapres_sous_rep_august_ausgangsrechnungen_2025" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_2025"/>
+        </record>
+        <record id="sapres_sous_rep_august_eingangsrechnungen_2025" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_2025"/>
+        </record>
+        <record id="sapres_sous_rep_august_kasse_2025" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_august_postbank_2025" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_2025"/>
+        </record>
+        <record id="sapres_sous_rep_august_postbank_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_postbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_august_volksbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_2025"/>
+        </record>
+        <record id="sapres_sous_rep_august_volksbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_volksbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_august_volksbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_volksbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_august_volksbank_konto_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_volksbank_konto_2025"/>
+        </record>
+
+
+        <!--              09 September    -->
+
+        <record id="sapres_sous_rep_september_2025" model="document.document">
+            <field name="name">09 September</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2025"/>
+        </record>
+        <record id="sapres_sous_rep_september_KONTOAUSZÜGE_2025" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_2025"/>
+        </record>
+        <record id="sapres_sous_rep_september_ausgangsrechnungen_2025" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_2025"/>
+        </record>
+        <record id="sapres_sous_rep_september_eingangsrechnungen_2025" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_2025"/>
+        </record>
+        <record id="sapres_sous_rep_september_kasse_2025" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_september_postbank_2025" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_2025"/>
+        </record>
+        <record id="sapres_sous_rep_september_postbank_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_postbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_september_volkbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_2025"/>
+        </record>
+        <record id="sapres_sous_rep_september_volkbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_volkbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_september_volkbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_volkbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_september_volkbank_konto_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_volkbank_konto_2025"/>
+        </record>
+
+
+        <!--            10 Oktober     -->
+
+        <record id="sapres_sous_rep_oktober_2025" model="document.document">
+            <field name="name">10 Oktober</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2025"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_KONTOAUSZÜGE_2025" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_2025"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_ausgangsrechnungen_2025" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_2025"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_eingangsrechnungen_2025" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_2025"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_kasse_2025" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_oktober_postbank_2025" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_2025"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_postbank_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_postbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_oktober_volkbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_2025"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_volkbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_volkbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_volkbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_volkbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_oktober_volkbank_konto_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_volkbank_konto_2025"/>
+        </record>
+
+        <!--           11 November   -->
+
+        <record id="sapres_sous_rep_november_2025" model="document.document">
+            <field name="name">11 November</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2025"/>
+        </record>
+        <record id="sapres_sous_rep_november_KONTOAUSZÜGE_2025" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_2025"/>
+        </record>
+        <record id="sapres_sous_rep_november_ausgangsrechnungen_2025" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_2025"/>
+        </record>
+        <record id="sapres_sous_rep_november_eingangsrechnungen_2025" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_2025"/>
+        </record>
+        <record id="sapres_sous_rep_november_kasse_2025" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_2025"/>
+        </record>
+        <record id="sapres_sous_rep_november_postbank_2025" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_2025"/>
+        </record>
+        <record id="sapres_sous_rep_november_postbank_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_postbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_november_volkbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_2025"/>
+        </record>
+        <record id="sapres_sous_rep_november_volkbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_volkbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_november_volkbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_volkbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_november_volkbank_konto_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_volkbank_konto_2025"/>
+        </record>
+        
+
+        <!--         12 Dezember    -->
+
+        <record id="sapres_sous_rep_dezember_2025" model="document.document">
+            <field name="name">12 Dezember</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2025"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_KONTOAUSZÜGE_2025" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_2025"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_ausgangsrechnungen_2025" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_2025"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_eingangsrechnungen_2025" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_2025"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_kasse_2025" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_dezember_postbank_2025" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_2025"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_postbank_k_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_postbank_2025"/>
+        </record>
+
+        <record id="sapres_sous_rep_dezember_volkbank_2025" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_2025"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_volkbank_konto_2025" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_volkbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_volkbank_kreditkarte_2025" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_volkbank_2025"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_v_k_konto_2025" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_volkbank_konto_2025"/>
+        </record>
+
+
+    </data>
+</odoo>

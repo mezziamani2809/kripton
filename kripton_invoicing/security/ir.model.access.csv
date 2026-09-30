@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_attachment_doc_wizard_manager,access_attachment_doc_wizard,model_attachment_doc_wizard,,1,1,1,1
+access_paid_account_move_manager,access_paid_account_move,model_paid_account_move,,1,1,1,1
+

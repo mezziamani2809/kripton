@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="seq_res_partner_vendor" model="ir.sequence">
+            <field name="name">Vendor Sequence</field>
+            <field name="code">res.partner.vendor.sequence</field>
+            <field name="prefix">%(year)s-</field>
+            <field name="padding">3</field>
+            <field name="number_next_actual">150</field>
+                        <field name="company_id" ref="kripton_invoicing.sapres_technologies_gmbh"/>
+
+        </record>
+    </data>
+</odoo>

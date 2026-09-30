@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_gutschrift_invoice_tree" model="ir.ui.view">
+            <field name="name">account.gutschrift.invoice.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="banner_route">/account/account_invoice_onboarding</attribute>
+                </xpath>
+                <field name="currency_id" position="attributes">
+                    <attribute name="string">Invoice Currency</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="action_move_gutscgrift_invoice_type" model="ir.actions.act_window">
+            <field name="name">Gutschrift</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_id" ref="view_gutschrift_invoice_tree"/>
+            <field name="domain">[('move_type', '=', 'out_invoice'),('journal_id', '=', '8')]</field>
+            <field name="context">{'default_move_type': 'out_invoice','default_journal_id': 8}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Gutschrift invoice
+                </p>
+                <p>
+                    Create invoices, register payments and keep track of the discussions with your customers.
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_gutscgrift_invoice" parent="account.menu_finance" name="Gutschrift"
+                  action="kripton_invoicing.action_move_gutscgrift_invoice_type"
+                  sequence="2" active="0"/>
+        <record id="view_tcs_invoice_tree" model="ir.ui.view">
+            <field name="name">account.tcs.invoice.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="banner_route">/account/account_invoice_onboarding</attribute>
+                </xpath>
+                <field name="currency_id" position="attributes">
+                    <attribute name="string">Invoice Currency</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="action_move_tcs_invoice_type" model="ir.actions.act_window">
+            <field name="name">TCS Invoices</field>
+            <field name="res_model">account.move</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="view_id" ref="view_tcs_invoice_tree"/>
+            <field name="domain">[('move_type', '=', 'out_invoice'),('journal_id', '=', '9'),('tcs','=',True)]</field>
+            <field name="context">{'default_move_type': 'out_invoice','default_journal_id': 9}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a TCS invoices
+                </p>
+                <p>
+                    Create invoices, register payments and keep track of the discussions with your customers.
+                </p>
+            </field>
+        </record>
+        <menuitem id="menu_tcs_invoice" parent="account.menu_finance" name="TCS Invoices"
+                  action="kripton_invoicing.action_move_tcs_invoice_type"
+                  sequence="2" active="0"/>
+
+
+    </data>
+</odoo>

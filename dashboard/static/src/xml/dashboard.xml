@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="CostDashboard">
+        <style>
+            .selected-year-red {
+        color: red;
+    }
+            .o_cost_dashboard {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 20px;
+                background-color: #f8f9fa;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .o_cost_dashboard h2 {
+                font-family: 'Arial', sans-serif;
+                color: #343a40;
+                margin-bottom: 15px;
+                text-align: center;
+            }
+
+            /* Hide the actual checkbox */
+            input[type="checkbox"] {
+                visibility: hidden;
+                position: absolute;
+            }
+
+            .year_filter_group label::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 20px;
+                width: 20px;
+                background-color: #f0f0f0;
+                border: 2px solid #000000;
+                border-radius: 3px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+
+
+            .year_filter_group label {
+                position: relative;
+                padding-left: 30px;
+                cursor: pointer;
+                font-size: 18px;
+                user-select: none;
+            }
+            .year_filter_group input[type="checkbox"]:checked + label {
+                 color: red;
+                 font-weight: bold;
+                 content: "";
+            }
+
+            @media screen and (max-width: 600px) {
+                canvas {
+                    height: 300px;
+                    width: 100%;
+                }
+            }
+
+            /* Additional style for the filters */
+            select, input[type="date"], button {
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+
+            /* Style the apply button */
+            #apply_filters {
+                width: 100%;
+                padding: 10px;
+                background-color: #007bff;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            input[name="year_filter"]:checked {
+               accent-color: red;
+            }
+
+            #apply_filters:hover {
+                background-color: #0056b3;
+            }
+        </style>
+
+        <!-- Filters section -->
+        <div class="o_cost_dashboard">
+            <h2>Select Period</h2>
+            <select id="period_filter">
+                <option value="month">Month</option>
+                <option value="quarter">Quarter</option>
+                <option value="year">Year</option>
+            </select>
+
+            <h2>Year:</h2>
+            <div class="year_filter_group">
+                <label for="year_2023"><input type="checkbox" name="year_filter" id="year_2023" value="2023"/> 2023</label>
+                <label for="year_2024"><input type="checkbox" name="year_filter" id="year_2024" value="2024"/> 2024</label>
+                <label for="year_2025"><input type="checkbox" name="year_filter" id="year_2025" value="2025"/> 2025</label>
+                <label for="year_2026"><input type="checkbox" name="year_filter" id="year_2026" value="2026"/> 2026</label>
+                <label for="year_2027"><input type="checkbox" name="year_filter" id="year_2027" value="2027"/> 2027</label>
+            </div>
+
+            <h2>Filters</h2>
+
+
+            <button id="apply_filters">Apply Filters</button>
+        </div>
+
+        <!-- Dashboard Charts -->
+        <div class="o_cost_dashboard">
+            <h2>CA</h2>
+            <canvas id="invoice_chart_sales" class="chartjs-render-monitor"></canvas>
+        </div>
+        <div class="o_cost_dashboard">
+            <h2>Gross Margin</h2>
+            <canvas id="margin_chart" class="chartjs-render-monitor"></canvas>
+        </div>
+        <div class="o_cost_dashboard">
+            <h2>Cost</h2>
+            <canvas id="invoice_chart_cost" class="chartjs-render-monitor"></canvas>
+        </div>
+        <div class="o_cost_dashboard">
+            <h2>CA and Cost</h2>
+            <canvas id="invoice_chart_cost_ca" class="chartjs-render-monitor"></canvas>
+        </div>
+        <div class="o_cost_dashboard">
+            <h2>Employee Cost</h2>
+            <canvas id="cost_chart" class="chartjs-render-monitor"></canvas>
+        </div>
+        <div class="o_cost_dashboard">
+            <h2>Consultants Cost</h2>
+            <canvas id="invoice_chart_purchases" class="chartjs-render-monitor"></canvas>
+        </div>
+    </t>
+</templates>

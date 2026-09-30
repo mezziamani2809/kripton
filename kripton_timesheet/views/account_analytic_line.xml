@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_timesheet_line_form_" model="ir.ui.view">
+        <field name="name">account.analytic.line.view.tree.quotation</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='date']" position="after">
+                <field name="end_date"/>
+            </xpath>
+            <xpath expr="//field[@name='unit_amount']" position="after">
+                <field name="consultant_id" invisible="1"/>
+                <field name="state" invisible="1"/>
+
+                <field name="timesheet_attachment" class="oe_inline" filename="timesheet_name" widget="drag_and_drop"/>
+                <field name="timesheet_name" invisible="1"/>
+
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="required">0</attribute>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="invoice_attachment" class="oe_inline" filename="invoice_name" widget="drag_and_drop"/>
+                <field name="invoice_name" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="timesheet_view_tree_quotation" model="ir.ui.view">
+        <field name="name">account.analytic.line.view.tree.quotation</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.hr_timesheet_line_tree"/>
+        <field name="arch" type="xml">
+            <!--  <xpath expr="//tree" position="attributes">
+                  <attribute name="delete">false</attribute>
+                  <attribute name="js_class">saleorder_btn_tree</attribute>
+
+              </xpath>-->
+
+           <!-- <xpath expr="//field[@name='date']" position="before">
+                <header>
+                    <button name="action_to_check" string="Check"
+                            type="object" groups="hr_timesheet.group_hr_timesheet_approver"/>
+                </header>
+            </xpath>-->
+            <xpath expr="//field[@name='unit_amount']" position="attributes">
+                <attribute name="readonly">0</attribute>
+                                <attribute name="invisible">0</attribute>
+
+            </xpath>
+            <xpath expr="//field[@name='employee_id']" position="before">
+                <field name="end_date"/>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='employee_id']" position="attributes">
+                <attribute name="required">0</attribute>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='task_id']" position="after">
+                <field name="timesheet_attachment" class="oe_inline" filename="timesheet_name" widget="drag_and_drop"/>
+                <field name="timesheet_name" invisible="1"/>
+                <field name="invoice_name" invisible="1"/>
+                <field name="invoice_attachment" class="oe_inline" filename="invoice_name" widget="drag_and_drop"/>
+            </xpath>
+        </field>
+    </record>
+    <record id="project_task_view_form_inherit_sale_timesheet_editable_quotation" model="ir.ui.view">
+        <field name="name">project.task.form.view.form.inherit.sale.timesheet.quotation</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='unit_amount']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='user_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='date']" position="after">
+                <field name="end_date"/>
+                <field name="is_employee" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='employee_id']" position="attributes">
+                <attribute name="required">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='employee_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='unit_amount']" position="after">
+                <field name="task_id" optional="show" options="{'no_create_edit': True, 'no_open': True}"
+                       widget="task_with_hours" context="{'default_project_id': project_id}"
+                       domain="[('project_id', '=', project_id)]"/>
+                <field name="consultant_id" context="{'res_partner_search_mode': 'supplier', 'show_vat': True}"
+                       attrs="{'invisible': [('is_employee', '=', True)]}"/>
+                <field name="timesheet_attachment" class="oe_inline" filename="timesheet_name" widget="drag_and_drop"/>
+                <field name="timesheet_name" invisible="1"/>
+                <field name="invoice_name" invisible="1"/>
+                <field name="invoice_attachment" class="oe_inline" filename="invoice_name" widget="drag_and_drop"/>
+                <field name="unit_amount_on_site" optional="show" widget="timesheet_uom" sum="Total"
+                       decoration-danger="unit_amount_on_site &gt; 24" invisible="1"/>
+                <field name="unit_amount_on_remote" optional="show" widget="timesheet_uom" sum="Total"
+                       decoration-danger="unit_amount_on_remote &gt; 24" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="timesheet_view_tree_user_" model="ir.ui.view">
+        <field name="name">account.analytic.line.view.tree.quotation</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="hr_timesheet.timesheet_view_tree_user"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='unit_amount']" position="attributes">
+                <attribute name="readonly">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='employee_id']" position="attributes">
+                <attribute name="required">0</attribute>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='employee_id']" position="before">
+                <field name="consultant_id" context="{'res_partner_search_mode': 'supplier', 'show_vat': True}"/>
+            </xpath>
+           <!-- <xpath expr="//field[@name='unit_amount']" position="before">
+                <field name="state" widget="badge" decoration-success="state == 'checked'"
+                       decoration-info="state == 'check'" optional="show"/>
+            </xpath>-->
+        </field>
+    </record>
+    <record id="hr_timesheet.act_hr_timesheet_line" model="ir.actions.act_window">
+        <field name="view_mode">tree,form</field>
+    </record>
+    <record id="hr_timesheet.timesheet_action_all" model="ir.actions.act_window">
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!--    <record id="invoices_view_tree_" model="ir.ui.view">
+            <field name="name">account.analytic</field>
+            <field name="model">account.analytic.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date"/>
+                    <field name="end_date"/>
+                    <field name="project_id"/>
+                    <field name="task_id"/>
+                    <field name="invoice_name" invisible="1"/>
+                    <field name="invoice_attachment" class="oe_inline" filename="invoice_name" widget="drag_and_drop"/>
+                    <field name="invoice_state" widget="badge" decoration-success="invoice_state == 'paid'"
+                           decoration-info="invoice_state == 'paid'" optional="show"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="sapres_invoices_view_tree_" model="ir.ui.view">
+            <field name="name">account.analytic</field>
+            <field name="model">account.analytic.line</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <header>
+                        <button name="action_to_paid" string="Paid"
+                                type="object" groups="hr_timesheet.group_hr_timesheet_approver"/>
+                    </header>
+                    <field name="date"/>
+                    <field name="end_date"/>
+                    <field name="consultant_id"/>
+                    <field name="project_id"/>
+                    <field name="task_id"/>
+                    <field name="invoice_name" invisible="1"/>
+                    <field name="invoice_attachment" class="oe_inline" filename="invoice_name" widget="drag_and_drop"/>
+                    <field name="invoice_state" widget="badge" decoration-success="invoice_state == 'paid'"
+                           decoration-info="invoice_state == 'paid'" optional="show"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="act_hr_timesheet_line_" model="ir.actions.act_window">
+            <field name="name">My Invoices</field>
+            <field name="res_model">account.analytic.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="kripton_timesheet.invoices_view_tree_"/>
+
+            <field name="domain">[('project_id', '!=', False), ('user_id', '=', uid)]</field>
+            <field name="context">{
+                "search_default_week":1,
+                'create': False,
+                }
+            </field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No activities found. Let's start a new one!
+                </p>
+                <p>
+                    Track your working hours by projects every day and invoice this time to your customers.
+                </p>
+            </field>
+        </record>
+        <record id="timesheet_action_all_" model="ir.actions.act_window">
+            <field name="name">All Invoices</field>
+            <field name="res_model">account.analytic.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="kripton_timesheet.sapres_invoices_view_tree_"/>
+            <field name="domain">[('project_id', '!=', False)]</field>
+            <field name="context">{
+                'search_default_week':1,
+                'create': False,
+
+                }
+            </field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No activities found. Let's start a new one!
+                </p>
+                <p>
+                    Track your working hours by projects every day and invoice this time to your customers.
+                </p>
+            </field>
+        </record>-->
+    <!--    <menuitem id="_menu_hr_time_tracking_"
+                  name="Bills"
+                  web_icon="kripton_base,static/description/account.png"
+                  groups="hr_timesheet.group_hr_timesheet_user"
+                  sequence="77"/>
+        <menuitem id="timesheet_menu_activity_user_"
+                  name="My Invoices"
+                  sequence="10"
+                  groups="hr_timesheet.group_hr_timesheet_user"
+                  parent="kripton_timesheet._menu_hr_time_tracking_"
+                  action="kripton_timesheet.act_hr_timesheet_line_"/>
+
+        <menuitem id="timesheet_menu_activity_all_"
+                  name="All Invoices"
+                  sequence="10"
+                  parent="kripton_timesheet._menu_hr_time_tracking_"
+                  action="kripton_timesheet.timesheet_action_all_"
+                  groups="hr_timesheet.group_hr_timesheet_approver"/>-->
+
+</odoo>

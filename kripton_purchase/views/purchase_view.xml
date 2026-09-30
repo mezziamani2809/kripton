@@ -1,0 +1,264 @@
+<?xml version="1.0" ?>
+<odoo>
+    <data>
+        <record id="purchase_order_form_bi_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.bi.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button name="%(action_report_contract_master)d"
+                            string="Contracts Master"
+                            type="action"
+                            class="oe_highlight" icon="fa-print"/>
+                    <button name="%(report_action_report_contracts_service)d"
+                            string="Contracts Service"
+                            type="action"
+                            class="oe_highlight" icon="fa-print"/>
+                </xpath>
+                <xpath expr="//notebook/page/field[@name='order_line']/tree/field[@name='product_qty']"
+                       position="after">
+                    <field name="discount" invisible="1"/>
+                    <field name="vendor_id"/>
+                    <field name="date"/>
+                    <field name="end_date"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="new_name" readonly="1" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='currency_id']" position="after">
+                    <field name="vendor_id" widget="res_partner_many2one"
+                           context="{'res_partner_search_mode': 'supplier'}" required="0"
+                           invisible="1"/>
+                    <field name="multi_vendor_id" widget="many2many_tags"
+                           required="0"
+                           attrs="{'invisible': [('tcs', '=', False)]}"/>
+                    <field name="datas" widget="many2many_binary" class="oe_inline"/>
+                    <field name="Signature"/>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="before">
+                    <field name="order_id" invisible="1"/>
+                    <field name="date" invisible="0"/>
+                    <field name="end_date" invisible="0"/>
+                    <field name="payment_term_id"/>
+                    <field name="contract_type" invisible="1"/>
+                    <field name="quantity_by_day"
+                           attrs="{'invisible': [('contract_type', '!=', 'd')], 'required': [('contract_type', '=', 'd')]}"/>
+                    <field name="number_of_hour_by_day" invisible="1"/>
+                    <field name="totol_hours"
+                           attrs="{'invisible': [('contract_type', '!=', 'h')],'required': [('contract_type', '=', 'h')]}"/>
+                </xpath>
+
+                <xpath expr="//field[@name='date_order']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='partner_ref']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_planned']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//label[@for='date_planned']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//div[@name='reminder']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='purchase_delivery_invoice']/group/group/field[@name='payment_term_id']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='order_line']" position="after">
+                    <group>
+                        <field name="description"/>
+                    </group>
+                </xpath>
+                <xpath expr="//page[@name='products']/group/group/field[@name='notes']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='products']/group/group/field[@name='tax_totals_json']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='products']/field[@name='order_line']/tree/field[@name='name']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='products']/field[@name='order_line']/tree/field[@name='product_uom']"
+                       position="after">
+                    <field name="service_type"/>
+                    <field name="vendor_id" invisible="1"/>
+                    <field name="number_of_hour_by_day" groups="uom.group_uom"
+                           attrs="{'required': [('display_type', '=', False)]}"
+                           force_save="1" optional="show"/>
+                </xpath>
+                <xpath expr="//page[@name='products']/field[@name='order_line']/tree/field[@name='product_id']"
+                       position="before">
+                    <field name="tcs_ba_id" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="before">
+                    <field name="tcs" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//page[@name='products']/field[@name='order_line']/tree/field[@name='product_qty']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='products']/field[@name='order_line']/tree/field[@name='price_subtotal']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='products']/field[@name='order_line']/tree/field[@name='date_planned']"
+                       position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//page[@name='products']" position="after">
+                    <page string="Master Agreement for Contractors (MAC)" name="contracts_master">
+                        <group>
+                            <field name="client_order_ref"/>
+                            <field name="whereas"/>
+                            <field name="subject_matter"/>
+                            <field name="statement_of_services"/>
+                            <field name="services_provision"/>
+                            <field name="compensation"/>
+                            <field name="rights_intellectual_property"/>
+                            <field name="non_disclosure_obligation"/>
+                            <field name="handover"/>
+                            <field name="warranty_damages"/>
+                            <field name="request_for_changes"/>
+                            <field name="customer_protection"/>
+                            <field name="non_solicitation_obligation"/>
+                            <field name="liability"/>
+                            <field name="personnel_data"/>
+                            <field name="contract_term_termination"/>
+                            <field name="final_clauses"/>
+                            <field name="ginsheim"/>
+                        </group>
+                    </page>
+                    <page string="Customized Service Agreement" name="contracts_service">
+                        <group>
+                            <field name="contract_no"/>
+                            <field name="project_organization"/>
+                            <field name="man_days"/>
+                            <field name="day_rate_site"/>
+                            <field name="day_rate_remote"/>
+                            <field name="frankfurt"/>
+                        </group>
+
+
+                    </page>
+                    <page name='invoices' string="invoices">
+                        <field name="timesheet_ids">
+                            <tree>
+                                <field name="date"/>
+                                <field name="end_date"/>
+                                <field name="invoice_name" invisible="1"/>
+                                <field name="invoice_attachment" class="oe_inline" filename="invoice_name"
+                                       widget="drag_and_drop"/>
+                            </tree>
+                        </field>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="purchase.menu_purchase_root" model="ir.ui.menu">
+            <field name="name">Subcontract</field>
+        </record>
+        <record id="purchase.menu_purchase_rfq" model="ir.ui.menu">
+            <field name="name">Subcontract</field>
+        </record>
+        <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+            <field name="name">Subcontract</field>
+        </record>
+
+        <record id="kripton_purchase_order_kpis_tree" model="ir.ui.view">
+            <field name="name">purchase.order.inherit.purchase.order.tree</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="new_name" invisible="1"/>
+                    <field name="date"/>
+                    <field name="end_date"/>
+                    <field name="client_order_ref"/>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='activity_ids']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+        <record id="kripton_purchase_order_tree" model="ir.ui.view">
+            <field name="name">purchase.order.tree</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='name']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_order']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='state']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_planned']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_approve']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="new_name" invisible="1"/>
+                    <field name="date"/>
+                    <field name="end_date"/>
+                    <field name="client_order_ref"/>
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='amount_total']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='company_id']" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

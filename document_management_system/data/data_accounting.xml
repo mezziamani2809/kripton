@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="sapres_rep" model="document.document">
+            <field name="name">2023</field>
+        </record>
+        <!--                01 Januar        -->
+
+        <record id="sapres_sous_rep_januar" model="document.document">
+            <field name="name">01 Januar</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep"/>
+        </record>
+        <record id="sapres_sous_rep_januar_KONTOAUSZÜGE" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar"/>
+        </record>
+        <record id="sapres_sous_rep_januar_ausgangsrechnungen" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar"/>
+        </record>
+        <record id="sapres_sous_rep_januar_eingangsrechnungen" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar"/>
+        </record>
+        <record id="sapres_sous_rep_januar_kasse" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar"/>
+        </record>
+
+        <record id="sapres_sous_rep_januar_postbank" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar"/>
+        </record>
+        <record id="sapres_sous_rep_januar_postbank_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_postbank"/>
+        </record>
+
+
+        <record id="sapres_sous_rep_januar_volksbank" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar"/>
+        </record>
+        <record id="sapres_sous_rep_januar_volksbank_konto" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_volksbank"/>
+        </record>
+        <record id="sapres_sous_rep_januar_volksbank_kreditkarte" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_volksbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_januar_volksbank_konto_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_volksbank_konto"/>
+        </record>
+        <record id="sapres_sous_rep_januar_volksbank_kreditkarte_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_volksbank_kreditkarte"/>
+        </record>
+
+        <!--              02 Februar      -->
+
+        <record id="sapres_sous_rep_februar" model="document.document">
+            <field name="name">02 Februar</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep"/>
+        </record>
+        <record id="sapres_sous_rep_februar_KONTOAUSZÜGE" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar"/>
+        </record>
+        <record id="sapres_sous_rep_februar_ausgangsrechnungen" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar"/>
+        </record>
+        <record id="sapres_sous_rep_februar_eingangsrechnungen" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar"/>
+        </record>
+        <record id="sapres_sous_rep_februar_kasse" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar"/>
+        </record>
+
+        <record id="sapres_sous_rep_februar_postbank" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar"/>
+        </record>
+        <record id="sapres_sous_rep_februar_postbank_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_postbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_februar_volksbank" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar"/>
+        </record>
+        <record id="sapres_sous_rep_februar_volksbank_konto" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_volksbank"/>
+        </record>
+        <record id="sapres_sous_rep_februar_volksbank_kreditkarte" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_volksbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_februar_volksbank_konto_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_volksbank_konto"/>
+        </record>
+        <record id="sapres_sous_rep_februar_volksbank_kreditkarte_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_volksbank_kreditkarte"/>
+        </record>
+
+
+        <!--             03 März     -->
+
+
+        <record id="sapres_sous_rep_marz" model="document.document">
+            <field name="name">03 März</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep"/>
+        </record>
+        <record id="sapres_sous_rep_marz_KONTOAUSZÜGE" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz"/>
+        </record>
+        <record id="sapres_sous_rep_marz_ausgangsrechnungen" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz"/>
+        </record>
+        <record id="sapres_sous_rep_marz_eingangsrechnungen" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz"/>
+        </record>
+        <record id="sapres_sous_rep_marz_kasse" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz"/>
+        </record>
+
+        <record id="sapres_sous_rep_marz_postbank" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz"/>
+        </record>
+        <record id="sapres_sous_rep_marz_postbank_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_postbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_marz_volksbank" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz"/>
+        </record>
+        <record id="sapres_sous_rep_marz_volksbank_konto" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_volksbank"/>
+        </record>
+        <record id="sapres_sous_rep_marz_volksbank_kreditkarte" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_volksbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_marz_volksbank_konto_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_volksbank_konto"/>
+        </record>
+        <record id="sapres_sous_rep_marz_volksbank_kreditkarte_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_volksbank_kreditkarte"/>
+        </record>
+
+        <!--             04 April      -->
+
+
+        <record id="sapres_sous_rep_aprel" model="document.document">
+            <field name="name">04 April</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_KONTOAUSZÜGE" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_ausgangsrechnungen" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_eingangsrechnungen" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_kasse" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel"/>
+        </record>
+
+        <record id="sapres_sous_rep_aprel_postbank" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_postbank_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_postbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_aprel_volsbank" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_volsbank_konto" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_volsbank"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_volsbank_kreditkarte" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_volsbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_aprel_volsbank_konto_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_volsbank_konto"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_volsbank_kreditkarte_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_volsbank_kreditkarte"/>
+        </record>
+        <!--             05 Mai     -->
+
+        <record id="sapres_sous_rep_mai" model="document.document">
+            <field name="name">05 Mai</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep"/>
+        </record>
+        <record id="sapres_sous_rep_mai_KONTOAUSZÜGE" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai"/>
+        </record>
+        <record id="sapres_sous_rep_mai_ausgangsrechnungen" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai"/>
+        </record>
+        <record id="sapres_sous_rep_mai_eingangsrechnungen" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai"/>
+        </record>
+        <record id="sapres_sous_rep_mai_kasse" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai"/>
+        </record>
+
+        <record id="sapres_sous_rep_mai_postbank" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai"/>
+        </record>
+        <record id="sapres_sous_rep_mai_postbank_k" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_postbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_mai_volksbank" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai"/>
+        </record>
+        <record id="sapres_sous_rep_mai_volksbank_konto" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_volksbank"/>
+        </record>
+        <record id="sapres_sous_rep_mai_volksbank_kreditkarte" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_volksbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_mai_volksbank_konto_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_volksbank_konto"/>
+        </record>
+        <record id="sapres_sous_rep_mai_volksbank_kreditkarte_k" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_volksbank_kreditkarte"/>
+        </record>
+
+        <!--            06 Juni   -->
+
+        <record id="sapres_sous_rep_juni" model="document.document">
+            <field name="name">06 Juni</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep"/>
+        </record>
+        <record id="sapres_sous_rep_juni_KONTOAUSZÜGE" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni"/>
+        </record>
+        <record id="sapres_sous_rep_juni_ausgangsrechnungen" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni"/>
+        </record>
+        <record id="sapres_sous_rep_juni_eingangsrechnungen" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni"/>
+        </record>
+        <record id="sapres_sous_rep_juni_kasse" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni"/>
+        </record>
+
+        <record id="sapres_sous_rep_juni_postbank" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni"/>
+        </record>
+        <record id="sapres_sous_rep_juni_postbank_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_postbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_juni_volksbank" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni"/>
+        </record>
+        <record id="sapres_sous_rep_juni_volksbank_konto" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_volksbank"/>
+        </record>
+        <record id="sapres_sous_rep_juni_volksbank_kreditkarte" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_volksbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_juni_volksbank_konto_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_volksbank_konto"/>
+        </record>
+        <record id="sapres_sous_rep_juni_volksbank_kreditkarte_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_volksbank_kreditkarte"/>
+        </record>
+
+        <!--             07 Juli    -->
+
+        <record id="sapres_sous_rep_juli" model="document.document">
+            <field name="name">07 Juli</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep"/>
+        </record>
+        <record id="sapres_sous_rep_juli_KONTOAUSZÜGE" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli"/>
+        </record>
+        <record id="sapres_sous_rep_juli_ausgangsrechnungen" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli"/>
+        </record>
+        <record id="sapres_sous_rep_juli_eingangsrechnungen" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli"/>
+        </record>
+        <record id="sapres_sous_rep_juli_kasse" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli"/>
+        </record>
+
+        <record id="sapres_sous_rep_juli_postbank" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli"/>
+        </record>
+        <record id="sapres_sous_rep_juli_postbank_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_postbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_juli_volksbank" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli"/>
+        </record>
+        <record id="sapres_sous_rep_juli_volksbank_konto" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_volksbank"/>
+        </record>
+        <record id="sapres_sous_rep_juli_volksbank_kreditkarte" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_volksbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_juli_volksbank_konto_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_volksbank_konto"/>
+        </record>
+        <record id="sapres_sous_rep_juli_volksbank_kreditkarte_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_volksbank_kreditkarte"/>
+        </record>
+        <!--              08 August    -->
+
+        <record id="sapres_sous_rep_august" model="document.document">
+            <field name="name">08 August</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep"/>
+        </record>
+        <record id="sapres_sous_rep_august_KONTOAUSZÜGE" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august"/>
+        </record>
+        <record id="sapres_sous_rep_august_ausgangsrechnungen" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august"/>
+        </record>
+        <record id="sapres_sous_rep_august_eingangsrechnungen" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august"/>
+        </record>
+        <record id="sapres_sous_rep_august_kasse" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august"/>
+        </record>
+
+        <record id="sapres_sous_rep_august_postbank" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august"/>
+        </record>
+        <record id="sapres_sous_rep_august_postbank_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_postbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_august_volksbank" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august"/>
+        </record>
+        <record id="sapres_sous_rep_august_volksbank_konto" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_volksbank"/>
+        </record>
+        <record id="sapres_sous_rep_august_volksbank_kreditkarte" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_volksbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_august_volksbank_konto_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_volksbank_konto"/>
+        </record>
+        <record id="sapres_sous_rep_august_volksbank_kreditkarte_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_volksbank_kreditkarte"/>
+        </record>
+
+        <!--              09 September    -->
+
+        <record id="sapres_sous_rep_september" model="document.document">
+            <field name="name">09 September</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep"/>
+        </record>
+        <record id="sapres_sous_rep_september_KONTOAUSZÜGE" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september"/>
+        </record>
+        <record id="sapres_sous_rep_september_ausgangsrechnungen" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september"/>
+        </record>
+        <record id="sapres_sous_rep_september_eingangsrechnungen" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september"/>
+        </record>
+        <record id="sapres_sous_rep_september_kasse" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september"/>
+        </record>
+
+        <record id="sapres_sous_rep_september_postbank" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september"/>
+        </record>
+        <record id="sapres_sous_rep_september_postbank_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_postbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_september_volkbank" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september"/>
+        </record>
+        <record id="sapres_sous_rep_september_volkbank_konto" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_volkbank"/>
+        </record>
+        <record id="sapres_sous_rep_september_volkbank_kreditkarte" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_volkbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_september_volkbank_konto_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_volkbank_konto"/>
+        </record>
+        <record id="sapres_sous_rep_september_volkbank_kreditkarte_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_volkbank_kreditkarte"/>
+        </record>
+
+        <!--            10 Oktober     -->
+
+        <record id="sapres_sous_rep_oktober" model="document.document">
+            <field name="name">10 Oktober</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_KONTOAUSZÜGE" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_ausgangsrechnungen" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_eingangsrechnungen" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_kasse" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober"/>
+        </record>
+
+        <record id="sapres_sous_rep_oktober_postbank" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_postbank_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_postbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_oktober_volkbank" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_volkbank_konto" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_volkbank"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_volkbank_kreditkarte" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_volkbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_oktober_volkbank_konto_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_volkbank_konto"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_volkbank_kreditkarte_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_volkbank_kreditkarte"/>
+        </record>
+        <!--           11 November   -->
+
+        <record id="sapres_sous_rep_november" model="document.document">
+            <field name="name">11 November</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep"/>
+        </record>
+         <record id="sapres_sous_rep_november_KONTOAUSZÜGE" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november"/>
+        </record>
+        <record id="sapres_sous_rep_november_ausgangsrechnungen" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november"/>
+        </record>
+        <record id="sapres_sous_rep_november_eingangsrechnungen" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november"/>
+        </record>
+        <record id="sapres_sous_rep_november_kasse" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november"/>
+        </record>
+        <record id="sapres_sous_rep_november_postbank" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november"/>
+        </record>
+        <record id="sapres_sous_rep_november_postbank_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_postbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_november_volkbank" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november"/>
+        </record>
+        <record id="sapres_sous_rep_november_volkbank_konto" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_volkbank"/>
+        </record>
+        <record id="sapres_sous_rep_november_volkbank_kreditkarte" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_volkbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_november_volkbank_konto_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_volkbank_konto"/>
+        </record>
+        <record id="sapres_sous_rep_november_volkbank_kreditkarte_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_volkbank_kreditkarte"/>
+        </record>
+
+        <!--         12 Dezember    -->
+
+        <record id="sapres_sous_rep_dezember" model="document.document">
+            <field name="name">12 Dezember</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep"/>
+        </record>
+          <record id="sapres_sous_rep_dezember_KONTOAUSZÜGE" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_ausgangsrechnungen" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_eingangsrechnungen" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_kasse" model="document.document">
+            <field name="name">KASSE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember"/>
+        </record>
+
+        <record id="sapres_sous_rep_dezember_postbank" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_postbank_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_postbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_dezember_volkbank" model="document.document">
+            <field name="name">VOLKSBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_volkbank_konto" model="document.document">
+            <field name="name">KONTO</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_volkbank"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_volkbank_kreditkarte" model="document.document">
+            <field name="name">KREDITKARTE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_volkbank"/>
+        </record>
+
+        <record id="sapres_sous_rep_dezember_v_k_konto" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_volkbank_konto"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_volkbank_kreditkarte_k" model="document.document">
+            <field name="name">KONTOAUSZUG</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_volkbank_kreditkarte"/>
+        </record>
+
+    </data>
+</odoo>

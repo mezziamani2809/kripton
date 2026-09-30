@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="employee_access_own_profile" model="ir.rule">
+        <field name="name">Employee Access Own Profile</field>
+        <field name="model_id" ref="model_hr_employee_payroll"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+    </record>
+
+    <!-- Rule for Administrators to Access All Employee Profiles -->
+    <record id="admin_access_all_employee_profiles" model="ir.rule">
+        <field name="name">Admin See All Data</field>
+        <field name="model_id" ref="model_hr_employee_payroll"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+    </record>
+    <record model='ir.ui.view' id='employee_payroll_form_view'>
+        <field name="name">hr.employee.payroll.form</field>
+        <field name="model">hr.employee.payroll</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" invisible="1"/>
+                            <field name="employee_id"/>
+                            <field name="doc_id" filename="name" class="oe_inline"/>
+                        </group>
+                        <group>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="user_id" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model='ir.ui.view' id='employee_payroll_tree_view'>
+        <field name="name">hr.employee.payroll.tree</field>
+        <field name="model">hr.employee.payroll</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="name" invisible="1"/>
+                <field name="doc_id" class="oe_inline" filename="name"
+                       widget="drag_and_drop"/>
+            </tree>
+        </field>
+    </record>
+    <record id="payroll_action" model="ir.actions.act_window">
+        <field name="name">Payroll</field>
+        <field name="res_model">hr.employee.payroll</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+    <record model="ir.ui.view" id="hr_employee_payroll_inherit_form_view">
+        <field name="name">hr.employee.form.view</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button class="oe_stat_button" name="payroll_view" type="object" icon="fa-money">
+                    <field string="Payroll" name="payroll_count" widget="statinfo"/>
+                </button>
+            </div>
+        </field>
+    </record>
+    <menuitem id="menu_Payroll"
+              name="Payroll"
+              sequence="76"
+              groups="hr.group_hr_user"
+              web_icon="kripton_base,static/description/account.png"
+              action="Kripton_payroll.payroll_action"/>
+</odoo>

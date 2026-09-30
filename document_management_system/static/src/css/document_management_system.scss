@@ -1,0 +1,49 @@
+.o_web_client{
+    .o_kanban_document{
+        .o_kanban_record{
+            .o_kanban_image{
+                >a{
+                    display: block;
+                    position: relative;
+                    >.badge{
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+.o_list_view .o_list_table tbody > tr > td:not(.o_list_record_selector):not(.o_handle_cell):not(.o_list_button):not(.o_state_selection_cell) {
+    vertical-align: middle;
+}
+
+.o_list_view .o_list_table .o_list_record_selector {
+    width: 40px;
+    padding-left: 14px;
+    vertical-align: middle;
+}
+.fa-fw {
+    width: 1.28571429em;
+    text-align: center;
+    font-size: 30px;
+
+}
+.btn-link {
+    font-weight: 400;
+    color: #556ee6 !important;
+    text-decoration: none;
+    float: right;
+    vertical-align: middle;
+
+}
+.o_list_view .o_list_table tbody > tr > td:not(.o_list_record_selector).o_list_button {
+    white-space: nowrap;
+    width: 0%;
+}
+
+
+.o_purchase_dashboard {
+    display: none;
+}

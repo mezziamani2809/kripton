@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_sale_po_tree" model="ir.ui.view">
+        <field name="name">sale.po.tree</field>
+        <field name="model">sale.po</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="client_order_ref"/>
+                <field name="date_po"/>
+                <field name="end_date_po"/>
+                <field name="contract_type"/>
+                <field name="po_amount"/>
+                <field name="po_balance"/>
+                <field name="quantity_by_day"/>
+                <field name="number_of_hour_by_day"/>
+                <field name="totol_hours"/>
+                <field name="invoice_payment_term_id"/>
+                <field name="timesheets_attachment_po" widget="binary"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_sale_po_form" model="ir.ui.view">
+        <field name="name">sale.po.form</field>
+        <field name="model">sale.po</field>
+        <field name="arch" type="xml">
+            <form string="Purchase Order">
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_view_invoices"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-pencil-square-o"
+                                attrs="{'invisible': [('invoice_count', '=', 0)]}">
+                            <field name="invoice_count" widget="statinfo" string="Invoices"/>
+                        </button>
+                    </div>
+                    <div class="oe_title">
+                        <h1>
+                            <field nolabel="1" name="client_order_ref"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+
+                            <field name="sale_id"/>
+                            <field name="date_po"/>
+                            <field name="end_date_po"/>
+                            <field name="contract_type"/>
+                            <field name="number_of_hour_by_day"/>
+                            <field name="totol_hours"/>
+                        </group>
+                        <group>
+                            <field name="timesheets_attachment_po" widget="binary"/>
+                            <field name="po_amount"/>
+                            <field name="po_balance"/>
+                            <field name="quantity_by_day"/>
+                        </group>
+                    </group>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+</odoo>

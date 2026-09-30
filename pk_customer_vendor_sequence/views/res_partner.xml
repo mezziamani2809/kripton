@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="customer_partner_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet//field[@name='avatar_128']" position="before">
+                    <heade>
+                        <h1>
+                            <field name="sequence_number" class="oe_title" readonly="1"/>
+                        </h1>
+                    </heade>
+                </xpath>
+            </field>
+        </record>
+        <record id="customer_partner_tree_inherit" model="ir.ui.view">
+            <field name="name">res.partner.tree.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree//field['display_name']" position="before">
+                    <field name="sequence_number"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="purchase_order_form_bi_inherit" model="ir.ui.view">
+            <field name="name">purchase.order.form.bi.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="sequence_number" readonly="1"/>
+                </xpath>
+
+            </field>
+        </record>
+        <record id="kripton_purchase_order_kpis_tree" model="ir.ui.view">
+            <field name="name">purchase.order.inherit.purchase.order.tree</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_kpis_tree"/>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                    <field name="sequence_number"/>
+                    <field name="multi_vendor_id" widget="many2many_tags" string="Consultants"/>
+                </xpath>
+
+
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

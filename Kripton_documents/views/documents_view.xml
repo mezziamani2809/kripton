@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="employee_Kripton_documents_access_own_profile" model="ir.rule">
+        <field name="name">Employee Access Own Profile</field>
+        <field name="model_id" ref="Kripton_documents.model_hr_employee_documents"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+    </record>
+
+    <!-- Rule for Administrators to Access All Employee Profiles -->
+    <record id="admin_Kripton_documents_access_all_employee_profiles" model="ir.rule">
+        <field name="name">Admin See All Data</field>
+        <field name="model_id" ref="Kripton_documents.model_hr_employee_documents"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+    </record>
+    <record model='ir.ui.view' id='employee_documents_form_view'>
+        <field name="name">hr.employee.documents.form</field>
+        <field name="model">hr.employee.documents</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                        <button name="action_confirm" string="Confirm"
+                            type="object" class="oe_highlight" data-hotkey="w" title="Confirm"   attrs="{'invisible': [('state', '!=', 'draft')]}"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="employee_id"/>
+                        </group>
+                        <group>
+                            <field name="type_id"/>
+                            <field name="doc_attachment_id" widget="many2many_binary" class="oe_inline"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <field name="description"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model='ir.ui.view' id='employee_documents_tree_view'>
+        <field name="name">hr.employee.documents.tree</field>
+        <field name="model">hr.employee.documents</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="employee_id"/>
+                <field name="type_id"/>
+                <field name="doc_attachment_id" widget="many2many_binary" class="oe_inline"/>
+            </tree>
+        </field>
+    </record>
+    <record id="documents_action" model="ir.actions.act_window">
+        <field name="name">Documents</field>
+        <field name="res_model">hr.employee.documents</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+    <record model="ir.ui.view" id="hr_employee_documents_inherit_form_view">
+        <field name="name">hr.employee.form.view</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <div class="oe_button_box" position="inside">
+                <button class="oe_stat_button" name="document_view" type="object" icon="fa-book">
+                    <field string="Documents" name="document_count" widget="statinfo"/>
+                </button>
+            </div>
+        </field>
+    </record>
+     <record model='ir.ui.view' id='employee_documents_type_form_view'>
+        <field name="name">hr.employee.documents.form</field>
+        <field name="model">hr.employee.documents.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+
+
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model='ir.ui.view' id='employee_documents_type_tree_view'>
+        <field name="name">hr.employee.documents.tree</field>
+        <field name="model">hr.employee.documents.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+    <record id="documents_type_action" model="ir.actions.act_window">
+        <field name="name">Documents Type</field>
+        <field name="res_model">hr.employee.documents.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+    </record>
+
+    <menuitem id="menu_documents"
+              name="Documents"
+              sequence="76"
+              groups="hr.group_hr_user"
+              web_icon="Kripton_documents,static/description/Note.png"
+              action="Kripton_documents.documents_action"/>
+    <menuitem id="menu_my_documents"
+              name="My Documents"
+              parent="Kripton_documents.menu_documents"
+              sequence="1"
+              groups="hr.group_hr_user"
+              action="Kripton_documents.documents_action"/>
+    <menuitem id="menu_type_documents"
+              name="Documents Type"
+              parent="Kripton_documents.menu_documents"
+              sequence="2"
+              groups="hr.group_hr_manager"
+              action="Kripton_documents.documents_type_action"/>
+</odoo>

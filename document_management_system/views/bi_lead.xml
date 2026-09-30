@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_Ssapres_doc_form_inherit" model="ir.ui.view">
+            <field name="name">sapres.document.document.form.inherit</field>
+            <field name="model">sapres.document.document</field>
+            <field name="inherit_id" ref="document_management_system.document_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='doc_attachment_id']" position="after">
+                        <field name="sequence_name" nolabel="0" invisible="1"/>
+                        <field name="sequence_ar" nolabel="0" invisible="1"/>
+                        <field name="sequence_er" nolabel="0" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

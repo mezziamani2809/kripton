@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="request_for_time_off_mail_template" model="mail.template">
+            <field name="name">Request for Time Off</field>
+            <field name="model_id" ref="model_hr_leave"/>
+            <field name="email_from">a.mezzi@kripton.fr</field>
+            <field name="email_to">e.karoui@sapres.de,a.mezzi@kripton.fr</field>
+            <field name="subject">Time Off Request</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <h4>
+                            <b>Dear Emna,</b>
+                        </h4>
+                        <br/>
+                        I hope this message finds you well.
+                        <br/>
+                        I am writing to inform you about the details of your time off request:
+                        <br/>
+                        <h5>
+                            Dates from
+                            <t t-out="object.date_from"/>
+                            to
+                            <t t-out="object.date_to"/>
+                            <br/>
+
+                            Duration :
+                            <t t-out="object.duration_display"/>
+                            <br/>
+                            Employees :
+                            <t t-out="object.employee_id.name"/>
+                            <br/>
+
+                            Time Off Type :
+                            <t t-out="object.holiday_status_id.name"/>
+                        </h5>
+                        <br/>
+                        Best regards,
+                        <br/>
+                        <t t-out="object.employee_id.name"/>
+                    </p>
+                </div>
+            </field>
+        </record>
+
+        <record id="approval_time_off_mail_template" model="mail.template">
+            <field name="name">Approval of Time Off Request</field>
+            <field name="model_id" ref="model_hr_leave"/>
+            <field name="email_from">a.mezzi@kripton.fr</field>
+            <field name="email_to">{{object.employee_id.work_email_p }}</field>
+            <field name="subject">Approval of Your Time Off Request</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <h4>
+                            <b>Dear <t t-out="object.employee_id.name"/>,
+                            </b>
+                        </h4>
+                        I hope this email finds you well.
+                        <br/>
+
+                        I am writing to inform you that your request for time off from
+                        <t t-out="object.date_from"/>
+                        to
+                        <t t-out="object.date_to"/>
+                        has been approved.
+                        <br/>
+                        Enjoy your time off!
+                        <br/>
+                        <br/>
+                        <b>
+                            Best regards,
+                            <br/>
+                            Emna KAROUI
+                            <br/>
+                            HR Manager
+                            <br/>
+                            SAPRES Technologies GmbH
+                        </b>
+                    </p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
+

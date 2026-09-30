@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_move_form_inherit_shz_kripton_sales" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.po</field>
+        <field name="model">account.move</field>
+        <field name="priority">100</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='accounting_info_group']" position="inside">
+                <field name="po_id" context="{'filter_po_by_move': id}"
+                       attrs="{'invisible': [('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund'))], 'readonly': [('state','!=','draft')]}"/>
+            </xpath>
+            <xpath expr="//field[@name='end_date']" position="attributes">
+                <attribute name="domain">[('supplier_rank','>', 0),('is_company', '=', False)]</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_account_various_payment_tree_inherit" model="ir.ui.view">
+        <field name="name">account.supplier.payment.tree</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_tree"/>
+        <field name="priority">99999</field>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="attributes">
+                <attribute name="string">Client</attribute>
+            </field>
+        </field>
+    </record>
+    <record id="sapres_view_account_invoice_filterinherited" model="ir.ui.view">
+        <field name="name">account.move.inherit.invoice.filter</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="priority">99999</field>
+        <field name="arch" type="xml">
+            <filter name="customer" position="attributes">
+                <attribute name="string">Client</attribute>
+            </filter>
+   <xpath expr="//field[@name='name']" position="before">
+                <field name="multi_vendor_id" string="Consultant" operator="ilike"/>
+            </xpath>
+
+            <xpath expr="//search/group" position="inside">
+                <filter string="Consultant" domain="[]" name="groupby_multi_vendor" context="{'group_by': 'multi_vendor_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

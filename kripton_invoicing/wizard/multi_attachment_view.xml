@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<odoo>
+    <record model='ir.ui.view' id='attachment_form_view'>
+        <field name="name">sapres.document.document.form</field>
+        <field name="model">attachment.document.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Add Attachment">
+                <group>
+                    <field name="d_attachment_ids" widget="many2many_binary" class="oe_inline" invisible="1"/>
+                 <field name="document_ref" widget="many2one"/>
+
+
+                </group>
+                <footer>
+                    <button string="Add attachment" type="object" name="add_attachment_all" class="btn btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+
+            </form>
+        </field>
+    </record>
+    <record id="add_attachment" model="ir.actions.act_window">
+        <field name="name">Add Accounting</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">attachment.document.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="kripton_invoicing.attachment_form_view"/>
+        <field name="target">new</field>
+    </record>
+
+
+</odoo>

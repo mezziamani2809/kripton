@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--    Template for sale order due reminder-->
+    <data noupdate="0">
+
+        <!--        Template for invoice due reminder-->
+        <record id="timesheet_mail_template" model="mail.template">
+            <field name="name">Timesheet Reminder Email</field>
+            <field name="model_id" ref="model_consultant_space"/>
+            <field name="email_from">a.mezzi@kripton.fr</field>
+            <field name="email_to">a.mezzi@kripton.fr,e.karoui@sapres.de</field>
+            <field name="subject">Timesheet Reminder Email</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p style="margin: 0px; padding: 0px; font-size: 13px;">
+                        <h4>
+                            <b>Dear Emna,</b>
+                        </h4>
+                        <br/>
+
+                        <b>Details of Timesheet
+                        </b>
+                        :
+                        <br/>
+                        Consultant Name :
+                        <t t-out="object.consultant_id.name"/>
+                        <br/>
+                        Date :
+                        <t t-out="object.date"/>
+                        <br/>
+                        Project:
+                        <t t-out="object.project_id.name"/>
+                        <br/>
+                       <br/>
+                            <br/>
+                        Best regards,
+                        <br/>
+                        <t t-out="object.consultant_id.name"/>
+                        <t t-out="object.consultant_id.email"/>
+                    </p>
+                </div>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sapres_cost_employee_form" model="ir.ui.view">
+        <field name="name">cost.employee.form</field>
+        <field name="model">cost.employee</field>
+        <field name="arch" type="xml">
+            <form string="Cost per employee">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="date"/>
+                        </group>
+                        <group>
+                            <field name="cost"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="sapres_cost_employee_tree" model="ir.ui.view">
+        <field name="name">cost.employee.tree</field>
+        <field name="model">cost.employee</field>
+        <field name="arch" type="xml">
+            <tree string="Cost per employee">
+                <field name="employee_id"/>
+                <field name="date"/>
+                <field name="cost"/>
+            </tree>
+        </field>
+    </record>
+    <record id="sapres_cost_employee_graph" model="ir.ui.view">
+        <field name="name">cost.employee.tree</field>
+        <field name="model">cost.employee</field>
+        <field name="arch" type="xml">
+            <graph string="Cost per employee">
+                <field name="employee_id"/>
+                <field name="date"/>
+                <field name="cost"/>
+            </graph>
+        </field>
+    </record>
+    <record id="sapres_cost_employee_action" model="ir.actions.act_window">
+        <field name="name">Cost per employee</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cost.employee</field>
+        <field name="view_mode">tree,form,graph</field>
+
+    </record>
+    <menuitem
+            id="menu_view_cost_employee"
+            action="kripton_base.sapres_cost_employee_action"
+            parent="hr.menu_human_resources_configuration"
+            sequence="1"/>
+
+
+</odoo>

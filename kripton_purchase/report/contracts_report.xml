@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_contract_master" model="ir.actions.report">
+        <field name="name">Contracts Master</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">kripton_purchase.report_contracts_master</field>
+        <field name="print_report_name">'Contracts Master'</field>
+    </record>
+    <report
+            id="report_action_report_contract_master"
+            model="purchase.order"
+            string="Contracts Master"
+            report_type="qweb-pdf"
+            name="kripton_purchase.report_contracts_master"
+            file="kripton_purchase.report_contracts_master"
+            print_report_name="'Contracts Master'"
+    />
+    <template id="report_contracts_master">
+        <t t-call="web.html_container">
+            <!-- Définition de la société -->
+            <t t-set="company" t-value="user.company_id"/>
+
+            <!-- Vérification si l'objet "o" existe, sinon utilisation de "docs" -->
+            <t t-if="not o" t-set="o" t-value="docs"/>
+
+            <div class="header">
+                <div class="row">
+                    <div style="padding-top: 40px; margin-left: 500px">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+                             style="max-height: 50px; width: 200px;" alt="Logo"/>
+                    </div>
+                </div>
+            </div>
+            <div class="footer"
+                 style="padding-left: 1mm; padding-right: 1mm;">
+                <h2>
+                    <br/>
+                </h2>
+            </div>
+
+            <div class="page">
+                <div class="page-1"
+                     style="height: 100%; page-break-after: always; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div style="font-size:16px; text-align: left; font-family:Calibri; ">
+                        <p>Contract No.
+                            <span t-field="o.client_order_ref"/>
+                        </p>
+                        <br/>
+                    </div>
+                    <div style="font-size:20px; text-align: Center; font-family:Arial; ">
+                        <strong>Master Agreement for Contractors (MAC)</strong>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
+                    <div style="font-size:14px; text-align: left; font-family:Arial; ">
+                        <p>This master Agreement ("Agreement") is made and entered into by and between,</p>
+                        <br/>
+                    </div>
+                    <table style="font-size:14px; width:100%; font-family:Arial;">
+                        <tr>
+                            <td style="font-size:12px; width:30%; font-family:Arial;">
+                                <br/>
+                            </td>
+                            <td style="text-align:justify; width:70%;">
+                                <p>
+                                    <strong>Sapres Technologies GmbH</strong>
+                                </p>
+                                <p>Praunheimer Landstr. 32</p>
+                                <p>60488 Frankfurt am Main</p>
+                                <p>- hereafter referred to as "SAPRES"</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 10px; padding-bottom: 10px;">
+                                <h4 style="text-align:left;">And</h4>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="font-size:12px; width:30%; font-family:Arial;">
+                                <br/>
+                            </td>
+                            <td style="text-align:justify; width:70%;">
+                                <p>
+                                    <strong t-field="o.partner_id.name"/>
+                                </p>
+                                <p t-field="o.partner_id.street"/>
+                                <p t-field="o.partner_id.street2" t-if="o.partner_id.street2"/>
+                                <p>
+                                    <span t-field="o.partner_id.zip"/>
+                                    <span t-field="o.partner_id.city"/>
+                                </p>
+                                <p t-field="o.partner_id.country_id.name" t-if="o.partner_id.country_id"/>
+                                <p>- hereafter referred to as "Contractor"</p>
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="font-size:14px; text-align: left; font-family:Arial; ">
+                        <br/>
+                        <br/>
+                        <strong>Whereas</strong>
+                        <br/>
+                        <p style="font-size:12px; text-align: left; font-family:Arial; " t-field="o.whereas"/>
+                        <br/>
+                    </div>
+                    <div style="font-size:14px; text-align: left; font-family:Arial; ">
+                        <strong>It is therefore agreed as follows:</strong>
+                    </div>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <strong>1. Subject Matter</strong>
+                    <br/>
+                    <p t-field="o.subject_matter"/>
+                    <br/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <strong>2. Statement of Services</strong>
+                    <br/>
+                    <p t-field="o.statement_of_services"/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <strong>3. General Principles of Service Provision</strong>
+                    <br/>
+                    <p t-field="o.services_provision"/>
+                    <br/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <strong>4. Compensation</strong>
+                    <br/>
+                    <p t-field="o.compensation"/>
+                    <br/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <strong>5. Rights / Intellectual Property</strong>
+                    <br/>
+                    <p t-field="o.rights_intellectual_property"/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <br/>
+                    <strong>6. Non-Disclosure Obligation</strong>
+                    <br/>
+                    <p t-field="o.non_disclosure_obligation"/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5; ">
+                    <br/>
+                    <strong>7. Handover</strong>
+                    <br/>
+                    <p t-field="o.handover"/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <br/>
+                    <br/>
+                    <br/>
+                    <strong>8. Warranty, Damages</strong>
+                    <p t-field="o.warranty_damages"/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <br/>
+                    <strong>9. Request for Changes</strong>
+                    <br/>
+                    <p t-field="o.request_for_changes"/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <br/>
+                    <strong>10. Customer Protection</strong>
+                    <br/>
+                    <p t-field="o.customer_protection"/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <br/>
+                    <strong>11. Non-Solicitation Obligation</strong>
+                    <br/>
+                    <p t-field="o.non_solicitation_obligation"/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <br/>
+                    <strong>12. Liability</strong>
+                    <br/>
+                    <p t-field="o.liability"/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5; ">
+                    <br/>
+                    <strong>13. Handling and Storage of Personnel Data</strong>
+                    <br/>
+                    <p t-field="o.personnel_data"/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial;line-height: 1.5; ">
+                    <br/>
+                    <strong>14. Contract Term and Termination</strong>
+                    <br/>
+                    <p t-field="o.contract_term_termination"/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <br/>
+                    <strong>15. Final Clauses</strong>
+                    <br/>
+                    <p t-field="o.final_clauses"/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5; ">
+
+                    <p>The undersigned agrees to the terms of this agreement on behalf of his or her organization or
+                        business
+                    </p>
+                    <div style="float: left; width: 50%; text-align: left;">
+
+                        <div style="text-align: left; margin-top: 50px; line-height: 1.5;">
+                            <p>Ginsheim-Gustavsburg, den
+                                <span t-field="o.ginsheim" t-options="{'widget': 'date'}"/>
+                            </p>
+                            <strong>Selim Ben Yedder</strong>
+                            <p>CEO</p>
+                            <p>Sapres Technologies GmbH</p>
+                        </div>
+                    </div>
+                    <div style="float: right; width: 50%; text-align: center; line-height: 1.5;">
+                        <div style="margin-top: 50px; line-height: 1.5;">
+                            <p>........................................</p>
+                            <strong t-field="o.partner_id.name"/>
+                            <p>Contractor</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </t>
+    </template>
+
+    <record id="action_report_contracts_service" model="ir.actions.report">
+        <field name="name">Contracts Service</field>
+        <field name="model">purchase.order</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">kripton_purchase.report_contracts_service</field>
+        <field name="print_report_name">'Contracts Service'</field>
+    </record>
+    <report
+            id="report_action_report_contracts_service"
+            model="purchase.order"
+            string="Contracts Service"
+            report_type="qweb-pdf"
+            name="kripton_purchase.report_contracts_service"
+            file="kripton_purchase.report_contracts_service"
+            print_report_name="'Contracts Service'"
+    />
+    <template id="report_contracts_service">
+        <t t-call="web.html_container">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+
+            <t t-if="not company">
+                <!-- Multicompany handling -->
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+
+            <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
+                <div class="row">
+                    <div style="padding-top: 40px; margin-left: 500px">
+                        <img t-if="company.logo" t-att-src="image_data_uri(company.logo)"
+                             style="max-height: 50px; width: 200px;" alt="Logo"/>
+                    </div>
+                </div>
+            </div>
+
+            <div t-attf-class="din_page footer o_company_#{company.id}_layout"
+                 style="padding-left: 1mm; padding-right: 1mm;">
+                <h2>
+                    <br/>
+                </h2>
+            </div>
+
+            <t t-set="company" t-value="user.company_id"/>
+
+            <t t-if="not o" t-set="o" t-value="docs[0] if docs else None"/>
+
+            <div class="page">
+                <div style="font-size:16px; text-align: left; font-family:Calibri;">
+                    <p>Contract No.
+                        <span t-field="o.contract_no"/>
+                    </p>
+                </div>
+                <div style="font-size:20px; text-align: center; font-family:Arial;">
+                    <strong>Customized Service Agreement</strong>
+                    <br/>
+                    <br/>
+                </div>
+                <table style="font-size:14px; width:100%; font-family:Arial;">
+                    <tr>
+                        <td style="font-size:12px; width:30%; font-family:Arial;">
+                            <br/>
+                        </td>
+                        <td style="text-align:justify; width:70%;">
+                            <p>
+                                <strong>Sapres Technologies GmbH</strong>
+                            </p>
+                            <p>Praunheimer Landstr. 32</p>
+                            <p>60488 Frankfurt am Main</p>
+                            <p>- hereafter referred to as "SAPRES"</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding-top: 10px; padding-bottom: 10px;">
+                            <h4 style="text-align:left;">And</h4>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-size:12px; width:30%; font-family:Arial;">
+                            <br/>
+                        </td>
+                        <td style="text-align:justify; width:70%;">
+                            <p>
+                                <strong t-field="o.partner_id.name"/>
+                            </p>
+                            <p t-field="o.partner_id.street"/>
+                            <p t-field="o.partner_id.street2" t-if="o.partner_id.street2"/>
+                            <p>
+                                <span t-field="o.partner_id.zip"/>
+                                <span t-field="o.partner_id.city"/>
+                            </p>
+                            <p t-field="o.partner_id.country_id.name" t-if="o.partner_id.country_id"/>
+                            <p>- hereafter referred to as "Contractor"</p>
+                        </td>
+                    </tr>
+                </table>
+
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <strong>Object of Services</strong>
+                    <br/>
+                    <p>Under a master agreement with SAPRES dated on
+                        <strong t-field="o.date" t-options="{'widget': 'date'}"/>
+                        , the Consultant provides consulting and support services for different projects implemented by
+                        SAPRES on instructions of the client
+                        <strong t-field="o.partner_id.name"/>
+                    </p>
+                </div>
+
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <br/>
+                    <strong>Supply of Services</strong>
+                    <br/>
+                    <p>The Consultant provides his services during the period from
+                        <strong t-field="o.date" t-options="{'widget': 'date'}"/>
+                        to
+
+                        . The volume of services to be provided by the Consultant within this period is estimated to be
+                        approx.
+                        <strong t-field="o.man_days"/>
+                        Man-days. The required volume of services is determined by the respective current
+                        project schedule of SAPRES and may exceed or fall short of the estimate.
+                        The services will be provided at working hours to be coordinated with the Client.
+                    </p>
+                </div>
+
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <br/>
+                    <br/>
+                    <strong>Project Organization</strong>
+                    <br/>
+                    <p t-field="o.project_organization"/>
+                </div>
+
+
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <strong>Fees / Invoicing</strong>
+                    <br/>
+                    <p>The services of the Consultants are remunerated at a man-day rate of
+                        <strong>
+                            <span t-field="o.day_rate_site"/>
+                            - €
+                        </strong>
+
+                        for onsite services and
+                        <strong>
+                            <span t-field="o.day_rate_site"/>
+                            -
+                            €
+
+                        </strong>
+                        for remote service.
+                    </p>
+                    <p>The Consultant will bill the fee with value-added tax once a month.</p>
+                    <p>Please forward all invoices to:
+                        <strong>accounting@sapres.de</strong>
+                    </p>
+                    <br/>
+                </div>
+                <div style="font-size:14px; text-align: left; font-family:Arial; line-height: 1.5;">
+                    <strong>Miscellaneous</strong>
+                    <p>The following SAPRES customers are subject to Sec. 10 of the Master Agreement (Customer
+                        Protection Clause):
+                        <br/>
+                        <span t-field="o.frankfurt" t-options="{'widget': 'date'}"/>
+                    </p>
+
+                    <div style="float: left; width: 50%; text-align: left;">
+                        <div style="text-align: left; margin-top: 50px; line-height: 1.5;">
+                            <p>Frankfurt am Main,
+                                <span t-field="o.frankfurt" t-options="{'widget': 'date'}"/>
+                            </p>
+                            <strong>Selim Ben Yedder</strong>
+                            <p>CEO</p>
+                            <p>Sapres Technologies GmbH</p>
+                        </div>
+                    </div>
+
+                    <div style="float: right; width: 50%; text-align: center; line-height: 1.5;">
+                        <div style="margin-top: 50px; line-height: 1.5;">
+                            <p>........................................</p>
+                            <strong t-field="o.partner_id.name"/>
+                            <p>Contractor</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </t>
+    </template>
+
+</odoo>

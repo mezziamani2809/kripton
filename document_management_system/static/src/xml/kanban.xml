@@ -1,0 +1,15 @@
+<templates>
+
+    <t t-name="dynamips_crm_kanban_buttons" t-inherit="crm_iap_lead.LeadMiningRequest.generate_leads_button" t-inherit-mode="extension">
+        <xpath expr="//button[1]" position="after">
+          <button id="lead_btn" t-if="widget.filter_lead_gen == true"  type="button" class="btn btn-secondary o_button_filter_lead_gen">Lead Gen</button>
+              <button id="adc_btn" t-if="widget.filter_lead_gen == true"  type="button" class="btn btn-secondary o_button_filter_adc">ADC</button>
+
+          <button id="projet_btn" t-if="widget.filter_lead_gen == true"  type="button" class="btn btn-secondary o_button_filter_avant_vente">Avant-vente</button>
+
+
+        </xpath>
+
+    </t>
+
+</templates>

@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="employee_access_own_profile" model="ir.rule">
+        <field name="name">Employee Access Own Profile</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[('user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_user'))]"/>
+    </record>
+    <record id="admin_access_all_employee_profiles" model="ir.rule">
+        <field name="name">Admin See All Data</field>
+        <field name="model_id" ref="hr.model_hr_employee"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('hr.group_hr_manager'))]"/>
+    </record>
+    <record id="hr_employee_view_form_inherit_vendor" model="ir.ui.view">
+        <field name="name">hr.employee.view.form.vendor</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <div class="oe_title">
+                    <h1>
+                        <field name="full_name" invisible="1"/>
+                        <field name="first_name" placeholder="Employee's First Name" required="False" invisible="1"/>
+                    </h1>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='mobile_phone']" position="before">
+                <field name="employee" invisible="1"/>
+                <field name="freelance" invisible="1"/>
+                <field name="tcs" invisible="1"/>
+                <field name="vendor_id" attrs="{ 'invisible': [('freelance', '=', False)]}"/>
+            </xpath>
+            <xpath expr="//field[@name='department_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='work_phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='mobile_phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='coach_id']" position="after">
+                <field name="timesheet_cost" invisible="1"/>
+                <field name="filename" invisible="1"/>
+                <field name="pc" widget="radio" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='parent_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='coach_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='hr_settings']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='job_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='category_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='job_title']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(hr.plan_wizard_action)d']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='work_email']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='public']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='personal_information']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='public']" position="before">
+                <page name="public_" string="Curriculum vitae">
+                    <div class="row">
+                        <div class="o_hr_skills_editable o_hr_skills_group o_group_skills col-lg-5 d-flex flex-column">
+                            <!-- This field uses a custom tree view rendered by the 'hr_resume' widget.
+                                Adding fields in the tree arch below makes them accessible to the widget
+                            -->
+                            <field mode="tree" nolabel="1" name="resume_line_ids" widget="hr_resume" string="">
+                                <tree>
+                                    <field name="line_type_id"/>
+                                    <field name="name"/>
+                                    <field name="description"/>
+                                    <field name="date_start"/>
+                                    <field name="date_end"/>
+                                    <field name="display_type" invisible="1"/>
+                                </tree>
+                            </field>
+                        </div>
+                        <div class="o_hr_skills_editable o_hr_skills_group o_group_skills col-lg-5 d-flex flex-column">
+                            <separator string="Curriculum vitae"/>
+                            <field name="cv_attachment" widget="many2many_binary" class="oe_inline"
+                                   string="Curriculum vitae"/>
+                        </div>
+
+                    </div>
+                </page>
+                <page name="public_contract" string="Contract">
+                    <div class="row">
+                        <div class="o_hr_skills_editable o_hr_skills_group o_group_resume col-lg-7 d-flex">
+                            <field name="file" class="oe_inline" filename="filename" widget="drag_and_drop"
+                                   string="Contract"/>
+
+                        </div>
+
+
+                    </div>
+                </page>
+                <page name="public__" string="Contact">
+                    <div id="o_work_employee_container"> <!-- These two div are used to position org_chart -->
+                        <div id="o_work_employee_main">
+                            <group>
+                                <group>
+                                    <field name="work_phone" string="Phone 1"/>
+                                    <field name="mobile_phone" string="Phone 2"/>
+                                    <field name="personal_phone" string="Phone 3"/>
+
+                                </group>
+                                <group>
+                                    <field name="work_email_p" string="Professional Email"/>
+                                    <field name="personal_email"/>
+                                    <field name="tcs_ba_id"/>
+
+                                </group>
+                            </group>
+
+
+                        </div>
+                    </div>
+                </page>
+                <page name="personal_information" string="Private Information" groups="hr.group_hr_user">
+                    <group>
+                        <group string="Address">
+                            <field name="street" placeholder="Street..." class="o_address_street"/>
+                            <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                            <field name="city" placeholder="State" class="o_address_city" string="State"/>
+                            <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                            <field name="lang" string="Language" invisible="1"/>
+                            <label for="km_home_work" invisible="1"/>
+                            <div class="o_row" name="div_km_home_work" invisible="1">
+                                <field name="km_home_work" groups="hr.group_hr_user"/>
+                                <span>Km</span>
+                            </div>
+
+                        </group>
+                        <group string="Citizenship">
+                            <field name="country_id"
+                                   options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                            <field name="identification_id" groups="hr.group_hr_user" invisible="1"/>
+                            <field name="passport_id" groups="hr.group_hr_user"/>
+                            <field name="has_work_permit_" filename="filename_pass" widget="drag_and_drop"/>
+                            <field name="filename_pass" invisible="1"/>
+                            <field name="gender"/>
+                            <field name="birthday"/>
+                            <field name="place_of_birth" groups="hr.group_hr_user"/>
+                            <field name="country_of_birth" groups="hr.group_hr_user"/>
+                        </group>
+                        <group string="Marital Status">
+                            <field name="marital"/>
+                            <field name="spouse_complete_name"
+                                   attrs="{'invisible': [('marital', 'not in', ['married', 'cohabitant'])]}"
+                                   groups="hr.group_hr_user"/>
+                            <field name="spouse_birthdate"
+                                   attrs="{'invisible': [('marital', 'not in', ['married', 'cohabitant'])]}"
+                                   groups="hr.group_hr_user"/>
+                        </group>
+                        <group string="Dependant">
+                            <field name="children"/>
+                        </group>
+                        <group string="Education">
+                            <field name="certificate"/>
+                            <field name="study_field"/>
+                            <field name="study_school"/>
+                        </group>
+                        <group string="Work Permit" name="has_work_permit">
+                            <field name="visa_no"/>
+                            <field name="permit_no"/>
+                            <field name="visa_expire"/>
+                            <field name="work_permit_expiration_date"/>
+                            <field name="has_work_permit"/>
+                        </group>
+
+                    </group>
+                </page>
+                <page name="cost" string="Cost Per Employee">
+                    <field name="cost_id">
+                        <tree>
+                            <field name="employee_id"/>
+                            <field name="date"/>
+                            <field name="cost"/>
+                        </tree>
+                    </field>
+                </page>
+
+                <page name="equipment" string="Equipment">
+                    <div id="o_work_employee_container"> <!-- These two div are used to position org_chart -->
+                        <div id="o_work_employee_main">
+                            <group>
+                                <group>
+                                    <field name="pc" widget="radio"/>
+                                    <field name="type" attrs="{ 'invisible': [('pc', '=', 'n')]}"/>
+                                    <field name="pcid" attrs="{ 'invisible': [('pc', '=', 'n')]}"/>
+                                    <field name="delivery_date" attrs="{ 'invisible': [('pc', '=', 'n')]}"/>
+                                    <field name="description" attrs="{ 'invisible': [('pc', '=', 'n')]}"/>
+                                </group>
+
+                            </group>
+
+
+                        </div>
+                    </div>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="hr.menu_hr_root" model="ir.ui.menu">
+        <field name="name">Employees</field>
+    </record>
+    <record id="hr.menu_hr_employee_user" model="ir.ui.menu">
+        <field name="name">Employees</field>
+    </record>
+    <record id="hr.menu_hr_employee_payroll" model="ir.ui.menu">
+        <field name="name">Employees</field>
+    </record>
+    <record id="hr.open_view_employee_list_my" model="ir.actions.act_window">
+        <field name="name">Employees</field>
+        <field name="view_mode">tree,form,activity</field>
+    </record>
+    <record id="hr_skills.hr_employee_view_form" model="ir.ui.view">
+        <field name="name">hr.employee.view.form.inherit.resume</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='public']" position="before">
+                <page name="public" string="Skills">
+                    <div class="row">
+
+                        <div class="o_hr_skills_editable o_hr_skills_group o_group_skills col-lg-5 d-flex flex-column">
+                            <separator/>
+                            <field mode="tree" nolabel="1" name="employee_skill_ids" widget="hr_skills">
+                                <tree>
+                                    <field name="skill_type_id" invisible="1"/>
+                                    <field name="skill_id"/>
+                                    <field name="skill_level_id" invisible="1"/>
+                                    <field name="level_progress" widget="progressbar" invisible="1"/>
+                                </tree>
+                            </field>
+                        </div>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="resume_type_langues" model="hr.resume.line.type">
+        <field name="name">Langues</field>
+        <field name="sequence">3</field>
+    </record>
+    <record id="hr_skills.resume_line_view_form" model="ir.ui.view">
+        <field name="name">hr.resume.line.form</field>
+        <field name="model">hr.resume.line</field>
+        <field name="arch" type="xml">
+            <form string="Resumé">
+                <div class="oe_title">
+                    <label for="line_type_id" string="Type"/>
+                    <field name="line_type_id" widget="selection"/>
+                    <label for="name" string="Job Position"/>
+                    <h1>
+                        <field name="name" placeholder="e.g. Odoo Inc." required="True"/>
+                    </h1>
+                </div>
+                <group>
+                    <group>
+                        <field name="company"/>
+                        <field name="project"/>
+                        <field name="display_type" required="1" invisible="1"/>
+                    </group>
+                    <group>
+                        <field name="date_start" required="True"/>
+                        <field name="date_end"/>
+                    </group>
+                </group>
+                <field name="description" placeholder="Description"/>
+            </form>
+        </field>
+    </record>
+    <record id="hr_skills.employee_skill_view_form" model="ir.ui.view">
+        <field name="name">hr.employees.skill.form</field>
+        <field name="model">hr.employee.skill</field>
+        <field name="arch" type="xml">
+            <form string="Skills">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="skill_type_id" widget="selection"/>
+                            <field
+                                    name="skill_id"
+                                    domain="[('skill_type_id', '=', skill_type_id)]"
+                                    options="{'no_create_edit':True}" required="1"/>
+                        </group>
+                        <group>
+                            <field name="skill_level_id" domain="[('skill_type_id', '=', skill_type_id)]"
+                                   widget="selection"/>
+                            <field name="level_progress" widget="progressbar"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="view_employee_tree_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.view.form.vendor</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='work_email']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='department_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='work_phone']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='parent_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='job_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='activity_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='activity_date_deadline']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='company_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="first_name" string="First Name" invisible="1"/>
+                <field name="work_phone" string="Phone 1"/>
+                <field name="mobile_phone" string="Phone 2"/>
+                <field name="personal_phone" string="Phone 3"/>
+                <field name="work_email_p" string="Professional Email"/>
+
+            </xpath>
+        </field>
+
+    </record>
+    <record id="view_employee_filter" model="ir.ui.view">
+        <field name="name">hr.employee.filter.inherit.hr.fleet</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="before">
+                <field name="full_name" string="Employee"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

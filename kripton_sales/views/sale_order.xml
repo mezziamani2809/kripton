@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="sale_order_form_quote" model="ir.ui.view">
+        <field name="name">sale.order.form.payment</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale_management.sale_order_form_quote"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='optional_products']" position="replace">
+                <page string="Optional Products" name="optional_products" invisible="1">
+                    <field name="sale_order_option_ids" mode="tree,form,kanban">
+                        <form string="Optional Products">
+                            <group>
+                                <field name="product_id"
+                                       domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"/>
+                                <field name="name"/>
+                                <field name="quantity"/>
+                                <field name="product_uom_category_id" invisible="1"/>
+                                <field name="uom_id" groups="uom.group_uom"/>
+                                <field name="price_unit"/>
+                                <field name="discount" groups="product.group_discount_per_so_line"/>
+                                <field name="is_present"/>
+                            </group>
+                        </form>
+                        <kanban class="o_kanban_mobile">
+                            <field name="product_id"/>
+                            <field name="quantity"/>
+                            <field name="uom_id" groups="uom.group_uom"/>
+                            <field name="price_unit"/>
+                            <field name="is_present"/>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div class="oe_kanban_card oe_kanban_global_click">
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <strong>
+                                                    <span>
+                                                        <t t-esc="record.product_id.value"/>
+                                                    </span>
+                                                </strong>
+                                            </div>
+                                            <div class="col-2">
+                                                <button name="button_add_to_order"
+                                                        class="btn btn-link oe_link fa fa-shopping-cart"
+                                                        title="Add to order lines" type="object"
+                                                        attrs="{'invisible': [('is_present', '=', True)]}"/>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 text-muted">
+                                                <span>
+                                                    Quantity:
+                                                    <t t-esc="record.quantity.value"/>
+                                                    <t t-esc="record.uom_id.value"/>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12 text-muted">
+                                                <span>
+                                                    Unit Price:
+                                                    <t t-esc="record.price_unit.value"/>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                        <tree string="Sales Quotation Template Lines" editable="bottom"
+                              decoration-success="is_present == True">
+                            <control>
+                                <create name="add_product_control" string="Add a product"/>
+                            </control>
+                            <field name="sequence" widget="handle"/>
+                            <field name="product_id"
+                                   domain="[('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]"/>
+                            <field name="name" optional="show"/>
+                            <field name="quantity"/>
+                            <field name="uom_id" string="UoM" groups="uom.group_uom" optional="show"/>
+                            <field name="product_uom_category_id" invisible="1"/>
+                            <field name="price_unit"/>
+                            <field name="discount" string="Disc.%" groups="product.group_discount_per_so_line"
+                                   optional="show"/>
+                            <field name="is_present" invisible="1"/>
+                            <button name="button_add_to_order" class="oe_link" icon="fa-shopping-cart"
+                                    title="Add to order lines" type="object"
+                                    attrs="{'invisible': [('is_present', '=', True)]}"/>
+                        </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_purchase.sale_order_inherited_form_purchase" model="ir.ui.view">
+        <field name="name">sale.order.inherited.form.purchase</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="action_view_purchase_orders" type="object" icon="fa-credit-card"
+                        groups='purchase.group_purchase_user' attrs="{'invisible': [('purchase_order_count', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="purchase_order_count"/>
+                        </span>
+                        <span class="o_stat_text">Subcontract</span>
+                    </div>
+                </button>
+            </xpath>
+        </field>
+    </record>
+    <record id="sale_purchase.purchase_order_inherited_form_sale" model="ir.ui.view">
+        <field name="name">purchase.order.inherited.form.sale</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="action_view_sale_orders" type="object" icon="fa-dollar"
+                        groups='sales_team.group_sale_salesman'
+                        attrs="{'invisible': [('sale_order_count', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="sale_order_count"/>
+                        </span>
+                        <span class="o_stat_text">Client Contract</span>
+                    </div>
+                </button>
+                <button type="object" name="action_view_project_ids" class="oe_stat_button" icon="fa-puzzle-piece"
+                        attrs="{'invisible': [('project_count', '=', 0)]}">
+                    <field name="project_ids" invisible="1"/>
+                    <field name="project_count" widget="statinfo" string="Projects"/>
+                </button>
+
+                <button type="object" name="action_view_task" class="oe_stat_button" icon="fa-tasks"
+                        attrs="{'invisible': [('tasks_count', '=', 0)]}">
+                    <field name="tasks_ids" invisible="1"/>
+                    <field name="tasks_count" widget="statinfo" string="Tasks"/>
+                </button>
+                <button type="object"
+                        name="action_view_timesheet"
+                        class="oe_stat_button"
+                        icon="fa-clock-o" attrs="{'invisible': [('timesheet_total_duration', '=', 0)]}">
+                    <div class="o_field_widget o_stat_info">
+                        <span class="o_stat_value">
+                            <field name="timesheet_total_duration" class="mr4" widget="statinfo" nolabel="1"/>
+                            <field name="timesheet_encode_uom_id" options="{'no_open': True}"/>
+                        </span>
+                        <span class="o_stat_text">Recorded</span>
+                    </div>
+                </button>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_order_form_sale" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="priority">10</field>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="replace">
+                <header>
+                    <field name="authorized_transaction_ids" invisible="1"/>
+                    <button name="payment_action_capture" type="object" data-hotkey="shift+g"
+                            string="Capture Transaction" class="oe_highlight"
+                            attrs="{'invisible': [('authorized_transaction_ids', '=', [])]}"/>
+                    <button name="payment_action_void" type="object" string="Void Transaction" data-hotkey="shift+v"
+                            confirm="Are you sure you want to void the authorized transaction? This action can't be undone."
+                            attrs="{'invisible': [('authorized_transaction_ids', '=', [])]}"/>
+                    <button name="375" string="Create Invoice" type="action" class="btn-primary" data-hotkey="q"
+                            invisible="1"/>
+                    <button name="375" string="Create Invoice" type="action"
+                            context="{'default_advance_payment_method': 'percentage'}" data-hotkey="q"
+                            invisible="1"/>
+                    <button name="action_quotation_send" string="Send by Email" type="object" states="draft"
+                            class="btn-primary" data-hotkey="g" invisible="1"/>
+                    <button name="action_quotation_send" type="object" string="Send PRO-FORMA Invoice"
+                            groups="sale.group_proforma_sales" class="btn-primary" invisible="1"
+                            context="{'proforma': True}"/>
+                    <button name="action_confirm" id="action_confirm" data-hotkey="v"
+                            string="Activate The Client Contract"
+                            class="btn-primary" type="object" attrs="{'invisible': [('state', 'not in', ['sent'])]}"/>
+                    <button name="action_confirm" data-hotkey="v" string="Activate The Client Contract" type="object"
+                            attrs="{'invisible': [('state', 'not in', ['draft'])]}"/>
+                    <button name="action_quotation_send" type="object" string="Send PRO-FORMA Invoice"
+                            groups="sale.group_proforma_sales"
+                            invisible="1"
+                            context="{'proforma': True}"/>
+                    <button name="action_quotation_send" string="Send by Email" type="object" states="sent,sale"
+                            data-hotkey="g" invisible="1"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                            invisible="0"
+                            data-hotkey="z"/>
+                    <button name="action_draft" states="cancel" type="object" string="Set to Quotation"
+                            data-hotkey="w"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,sale"/>
+                </header>
+            </xpath>
+            <xpath expr="//page[@name='order_lines']//tree/field[@name='price_total']" position="after">
+                <button type="object" name="copy_sol" icon="fa-copy" class="btn btn-light"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="string">Client</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="final_customer_id" widget="selection" domain="[('final_customer_rank','>', 0)]"
+                       context="{'res_partner_search_mode': 'final_customer'}" invisible="0"/>
+                <field name="final_customer" invisible="1"/>
+                <field name="client_order_ref" string="PO Number"/>
+                <field name="vendor_id" widget="res_partner_many2one"
+                       context="{'res_partner_search_mode': 'supplier'}" invisible="1"/>
+                <field name="multi_vendor_id" widget="many2many_tags"
+                       invisible="1"/>
+                <field name="timesheets_attachment" widget="many2many_binary" class="oe_inline" string="Contract"/>
+                <field name="date"/>
+                <field name="end_date"/>
+                <field name="Signature"/>
+            </xpath>
+            <xpath expr="//group[@name='sale_header']" position="after">
+                <group>
+                    <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
+                            type="action" class="btn-primary" data-hotkey="q"
+                            attrs="{'invisible': [('invoice_status', '!=', 'to invoice')]}"/>
+                    <button name="%(sale.action_view_sale_advance_payment_inv)d" string="Create Invoice"
+                            type="action" context="{'default_advance_payment_method': 'percentage'}" data-hotkey="q"
+                            attrs="{'invisible': ['|',('invoice_status', '!=', 'no'), ('state', '!=', 'sale')]}"/>
+                </group>
+
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="contract_type_po" widget="radio"/>
+                <field name="tcs" invisible="1"/>
+                <field name="is_employee" invisible="1"/>
+                <field name="employee_id" attrs="{'invisible': [('is_employee', '=', False)]}"/>
+                <field name="number_of_hour_by_day" invisible="1"/>
+
+            </xpath>
+            <xpath expr="//label[@for='date_order']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='customer_signature']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='other_information']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='date_order']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='validity_date']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='order_details']" position="replace">
+                <group name="order_details">
+                    <field name="show_update_pricelist" invisible="1"/>
+                    <label for="pricelist_id" groups="product.group_product_pricelist"/>
+                    <div groups="product.group_product_pricelist" class="o_row">
+                        <field name="pricelist_id" options="{'no_open':True,'no_create': True}"/>
+                        <button name="update_prices" type="object" string=" Update Prices"
+                                help="Recompute all prices based on this pricelist" class="btn-link mb-1 px-0"
+                                icon="fa-refresh"
+                                confirm="This will update all unit prices based on the currently set pricelist."
+                                attrs="{'invisible': ['|', ('show_update_pricelist', '=', False), ('state', 'in', ['sale', 'done','cancel'])]}"/>
+                    </div>
+                    <field name="contract_type" widget="radio"
+                           attrs="{'invisible': [('contract_type_po', '!=', 'po')]}"/>
+                    <field name="quantity_by_day"
+                           attrs="{'invisible':['|',('contract_type', '!=', 'po'),('contract_type', '=', 'h')]}"/>
+                    <field name="totol_hours"
+                           attrs="{'invisible':['|',('contract_type', '!=', 'po'),('contract_type', '=', 'd')]}"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="tax_country_id" invisible="1"/>
+                    <field name="payment_term_id" options="{
+                'no_create': True,
+                'no_edit': True,
+                'no_quick_create': True,
+                'no_open': False
+            }"/>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='payment_term_id']" position="before">
+                <field name="currency_id" readonly="False"/>
+
+                <field name="timesheets_attachment_po" class="oe_inline" filename="invoice_name" widget="drag_and_drop"
+                       attrs="{'invisible': [('contract_type_po', '!=', 'po')]}"/>
+                <field name="date_po" attrs="{'invisible': [('contract_type_po', '!=', 'po')]}"/>
+                <field name="end_date_po" attrs="{'invisible': [('contract_type_po', '!=', 'po')]}"/>
+                <field name="po_amount" attrs="{'invisible': [('contract_type_po', '!=', 'po')]}"/>
+                <field name="invoice_amount_total" attrs="{'invisible': [('contract_type_po', '!=', 'po')]}"
+                       readonly="True"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']" position="attributes">
+                <attribute name="context">{
+                    'default_date': date,
+                    'default_end_date': end_date,
+                    }
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='price_subtotal']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="attributes">
+                <attribute name="invisible">0</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom']" position="after">
+                <field name="number_of_hour_by_day" force_save="1" groups="uom.group_uom" class="oe_no_button"
+                       attrs="{'required': [('display_type', '=', False)]}"/>
+                <field name="end_date_timesheet" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
+                <field name="add_line" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='name']" position="after">
+                <field name="service_type"/>
+                <field name="vendor_id" context="{'res_partner_search_mode': 'supplier', 'show_vat': True}"
+                       attrs="{'invisible': [('parent.is_employee', '=', True)]}"
+                       domain="[('supplier_rank','>', 0),('is_company', '=', False)]">
+                    <field name="name"/>
+                </field>
+                <field name="date" readonly="1" force_save="1"/>
+                <field name="end_date" readonly="1" force_save="1"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="before">
+                <field name="tcs_ba_id" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='order_line']/tree/field[@name='customer_lead']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+
+            <xpath expr="//group[@name='note_group']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//group[@name='sales_person']//field[@name='client_order_ref']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']" position="after">
+                <group>
+                    <field name="description"/>
+                </group>
+            </xpath>
+
+        </field>
+    </record>
+    <record id="sale.sale_menu_root" model="ir.ui.menu">
+        <field name="name">Client Contract</field>
+        <field name="sequence">22</field>
+        <field name="web_icon">kripton_base,static/description/sales.png</field>
+
+    </record>
+    <record id="sale.menu_sale_quotations" model="ir.ui.menu">
+        <field name="name">Client Contract</field>
+    </record>
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="name">Client Contract</field>
+    </record>
+
+    <record id="sapres_view_quotation_tree_with_onboarding" model="ir.ui.view">
+        <field name="name">sale.order.inherited</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="replace">
+                <tree string="Quotation" class="o_sale_order" sample="1">
+                    <field name="name" string="Number" readonly="1" decoration-bf="1"/>
+                    <field name="partner_id" readonly="1"/>
+                    <field name="multi_vendor_id" widget="many2many_tags" string="Consultants"/>
+                    <field name="date"/>
+                    <field name="end_date" readonly="1"/>
+                </tree>
+            </xpath>
+        </field>
+    </record>
+    <record id="sale.sale_order_view_search_inherit_quotation" model="ir.ui.view">
+        <field name="name">sale.order.search.inherit.quotation</field>
+        <field name="model">sale.order</field>
+        <field name="mode">primary</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='my_sale_orders_filter']" position="replace">
+                <field name="campaign_id"/>
+                <separator/>
+                <filter string="My Quotations" name="my_quotation" domain="[('user_id', '=', uid)]" invisible="1"/>
+                <separator/>
+                <filter string="Quotations" name="draft" domain="[('state','in',('draft', 'sent'))]" invisible="1"/>
+                <filter string="Sales Orders" name="sales" domain="[('state','in',('sale','done'))]" invisible="1"/>
+                <separator/>
+                <filter string="Create Date" name="filter_create_date" date="create_date" invisible="1"/>
+                <group expand="0" string="Group By">
+                    <filter string="Start Date" name="date" domain="[]" context="{'group_by': 'date'}"/>
+                    <filter name="End Date" string="end_date" domain="[]" context="{'group_by': 'end_date'}"/>
+                    <filter string="Consultant" name="multi_vendor_id" domain="[]"
+                            context="{'group_by': 'multi_vendor_id'}"/>
+                </group>
+            </xpath>
+            <xpath expr="//filter[@name='salesperson']" position="attributes">
+                <attribute name="invisible">1</attribute>
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//filter[@name='order_month']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="sale.action_quotations_with_onboarding" model="ir.actions.act_window">
+        <field name="context">{}</field>
+    </record>
+</odoo>
+
+

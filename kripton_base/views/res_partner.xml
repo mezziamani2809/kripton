@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_partner_action_final_customer" model="ir.actions.act_window">
+        <field name="name">Final Customers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_final_customer': 1,'res_partner_search_mode': 'final_customer',
+            'default_is_compfany': True, 'default_final_customer_rank': 1}
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new final customer in your address book
+            </p>
+            <p>
+                Odoo helps you easily track all activities related to a final customer.
+            </p>
+        </field>
+    </record>
+    <menuitem id="menu_account_final_customer" parent="sale.sale_order_menu" name="Final Customers"
+              groups="sales_team.group_sale_manager"
+              action="kripton_base.res_partner_action_final_customer"
+              sequence="11"/>
+    <menuitem id="menu_account_final_customer" parent="sale.sale_order_menu" name="Final Customers"
+              groups="sales_team.group_sale_manager"
+              action="kripton_base.res_partner_action_final_customer"
+              sequence="12"/>
+    <record id="final_res_partner_view_search" model="ir.ui.view">
+        <field name="name">res.partner.search.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_res_partner_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='inactive']" position="before">
+                <filter string="Final Customer" name="final_customer" domain="[('final_customer_rank','>', 0)]"/>
+                <separator/>
+            </xpath>
+        </field>
+    </record>
+    <record id="view_partner_structured_form" model="ir.ui.view">
+        <field name="name">view_partner_structured_form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='contact_addresses']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|','|',('final_customer_rank', '=', 1),('customer_rank', '=', 1),('company_type', '=', 'person')]}
+                </attribute>
+                <attribute name="string">Consultants</attribute>
+            </xpath>
+            <xpath expr="//page[@name='contact_addresses']" position="after">
+                <page attrs="{'invisible': ['|',('final_customer_rank', '=', 1),('supplier_rank', '>', 0)]}"
+                      string="Contacts" name="contact_addresses_" autofocus="autofocus">
+                    <field name="child_ids" mode="kanban"
+                           context="{'default_parent_id': active_id, 'default_street': street, 'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip': zip, 'default_country_id': country_id, 'default_lang': lang, 'default_user_id': user_id, 'default_type': 'other'}">
+                        <kanban>
+                            <field name="id"/>
+                            <field name="color"/>
+                            <field name="name"/>
+                            <field name="title"/>
+                            <field name="type"/>
+                            <field name="email"/>
+                            <field name="parent_id"/>
+                            <field name="is_company"/>
+                            <field name="function"/>
+                            <field name="phone"/>
+                            <field name="street"/>
+                            <field name="street2"/>
+                            <field name="zip"/>
+                            <field name="city"/>
+                            <field name="country_id"/>
+                            <field name="mobile"/>
+                            <field name="state_id"/>
+                            <field name="image_128"/>
+                            <field name="avatar_128"/>
+                            <field name="lang"/>
+                            <!-- fields in form x2many view to diminish requests -->
+                            <field name="comment"/>
+                            <field name="display_name"/>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <t t-set="color" t-value="kanban_color(record.color.raw_value)"/>
+                                    <div t-att-class="color + (record.title.raw_value == 1 ? ' oe_kanban_color_alert' : '') + ' oe_kanban_global_click'">
+                                        <div class="o_kanban_image">
+                                            <img alt="Contact image"
+                                                 t-att-src="kanban_image('res.partner', 'avatar_128', record.id.raw_value)"/>
+                                        </div>
+                                        <div class="oe_kanban_details">
+                                            <field name="name"/>
+                                            <div t-if="record.function.raw_value">
+                                                <field name="function"/>
+                                            </div>
+                                            <div t-if="record.email.raw_value">
+                                                <field name="email" widget="email"/>
+                                            </div>
+                                            <div t-if="record.type.raw_value != 'contact'">
+                                                <div>
+                                                    <field name="zip"/>
+                                                    <field name="city"/>
+                                                </div>
+                                                <field t-if="record.state_id.raw_value" name="state_id"/>
+                                                <field name="country_id"/>
+                                            </div>
+                                            <div t-if="record.phone.raw_value">Phone:
+                                                <t t-esc="record.phone.value"/>
+                                            </div>
+                                            <div t-if="record.mobile.raw_value">Mobile:
+                                                <t t-esc="record.mobile.value"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                        <form string="Contact">
+                            <sheet>
+                                <!-- parent_id and type fields needed in attrs in base_address_city module which overwrites
+                                _fields_view_get() of partner. It would be better to put those fields there but the web client
+                                dosen't support when a field is displayed several times in the same view.-->
+                                <field name="type" required="0" widget="radio" options="{'horizontal': true}"
+                                       invisible="1"/>
+                                <field name="parent_id" invisible="1"/>
+                                <hr/>
+                                <group>
+                                    <group>
+                                        <field name="name" string="Contact Name"
+                                               attrs="{'required' : [('type', '=', 'contact')]}"/>
+                                        <field name="title" options="{'no_open': True}" placeholder="e.g. Mr."
+                                               attrs="{'invisible': [('type','!=', 'contact')]}"/>
+                                        <field name="function" placeholder="e.g. Sales Director"
+                                               attrs="{'invisible': [('type','!=', 'contact')]}"/>
+                                        <label for="street" string="Address"
+                                               attrs="{'invisible': [('type','=', 'contact')]}"/>
+                                        <div attrs="{'invisible': [('type','=', 'contact')]}">
+                                            <div class="o_address_format" name="div_address">
+                                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                                <field name="street2" placeholder="Street 2..."
+                                                       class="o_address_street"/>
+                                                <field name="city" placeholder="City" class="o_address_city"/>
+                                                <field name="state_id" class="o_address_state" placeholder="State"
+                                                       options="{'no_open': True, 'no_quick_create': True}"
+                                                       context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
+                                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                                <field name="country_id" placeholder="Country" class="o_address_country"
+                                                       options='{"no_open": True, "no_create": True}'/>
+                                            </div>
+                                        </div>
+                                    </group>
+                                    <group>
+                                        <field name="email" widget="email"/>
+                                        <field name="phone" widget="phone"/>
+                                        <field name="mobile" widget="phone"/>
+                                        <field name="company_id" invisible="1"/>
+                                    </group>
+                                </group>
+                                <group>
+                                    <field name="comment" placeholder="Internal notes..."/>
+                                </group>
+                                <field name="lang" invisible="True"/>
+                                <field name="user_id" invisible="True"/>
+                            </sheet>
+                        </form>
+                    </field>
+                </page>
+
+            </xpath>
+            <xpath expr="//field[@name='title']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='company_type']" position="replace">
+                <field name="company_type" widget="radio" options="{'horizontal': true}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="tva" string="VAT" attrs="{'invisible': [('final_customer_rank', '=', 1)]}"/>
+                <field name="iban" string="IBAN" attrs="{'invisible': [('final_customer_rank', '=', 1)]}"/>
+                <field name="bic" string="BIC" attrs="{'invisible': [('final_customer_rank', '=', 1)]}"/>
+                <field name="type_contact" string="Type"
+                       invisible="1"/>
+                <field name="supplier_rank" invisible="1"/>
+                <field name="customer_rank" invisible="1"/>
+                <field name="final_customer_rank" invisible="1"/>
+                <field name="tcs_ba_id"
+                       attrs="{'invisible': ['|','|',('final_customer_rank', '=', 1),('customer_rank', '=', 1),('company_type', '!=', 'person')]}"/>
+                <field name="timesheets_attachment" widget="many2many_binary" class="oe_inline" string="Contract"
+                       attrs="{'invisible': [('final_customer_rank', '=', 1)]}"/>
+                <field name="related_user_id" invisible="1"/>
+            </xpath>
+            <xpath expr="//h1//field[@name='name']/.." position="after">
+                <div class="oe_edit_only">
+                    <group>
+                        <field name="first_name"
+                               attrs="{'invisible': ['|','|',('final_customer_rank', '=', 1),('customer_rank', '=', 1), ('company_type', '!=', 'person')]}"/>
+                        <field name="last_name"
+                               attrs="{'invisible': ['|','|',('final_customer_rank', '=', 1),('customer_rank', '=', 1), ('company_type', '!=', 'person')]}"/>
+                    </group>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']" position="attributes">
+                <attribute name="context">{'type': 'contact'}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='type']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='name']" position="after">
+                <label for="street" string="Address"/>
+                <div>
+                    <div class="o_address_format" name="div_address">
+                        <field name="street" placeholder="Street..." class="o_address_street"/>
+                        <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                        <field name="city" placeholder="City" class="o_address_city"/>
+                        <field name="state_id" class="o_address_state" placeholder="State"
+                               options="{'no_open': True, 'no_quick_create': True}"
+                               context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
+                        <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                        <field name="country_id" placeholder="Country" class="o_address_country"
+                               options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+                    </div>
+                </div>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='comment']" position="after">
+                <field name="filename" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='state_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='title']" position="after">
+                <field name="filename" invisible="1"/>
+                <field name="file" class="oe_inline" filename="filename" widget="drag_and_drop"
+                       string="Curriculum vitae"
+                       attrs="{'invisible': ['|','|',('final_customer_rank', '=', 1),('customer_rank', '=', 1), ('company_type', '!=', 'person')]}"/>
+            </xpath>
+            <xpath expr="//div" position="before">
+                <header>
+                    <button string="Create User"
+                            attrs="{'invisible': ['|','|','|',('user_active','=',True),('final_customer_rank', '=', 1),('customer_rank', '=', 1), ('company_type', '!=', 'person')]}"
+                            class="btn btn-primary o_form_button_edit" type="object" name="create_users"/>
+                </header>
+                <field name="user_active" invisible="1"></field>
+            </xpath>
+            <xpath expr="//group[@name='misc']" position="after">
+                <group string="Related User">
+                    <field name="related_user" string="user"></field>
+                </group>
+            </xpath>
+            <xpath expr="//field[@name='child_ids']/form//field[@name='function']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='function']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//page[@name='sales_purchases']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|','|',('final_customer_rank', '=', 1),('customer_rank', '=',
+                    1),('supplier_rank', '=', 1)]}
+                </attribute>
+            </xpath>
+            <xpath expr="//page[@name='accounting']" position="attributes">
+                <attribute name="attrs">{'invisible': ['|','|',('final_customer_rank', '=', 1),('customer_rank', '=',
+                    1),('supplier_rank', '=', 1)]}
+                </attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='title']" position="attributes">
+                <attribute name="attrs">{'invisible': [('final_customer_rank', '=', 1)]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='parent_id']" position="attributes">
+                <attribute name="attrs">{'invisible': [('company_type', '=', 'person')]}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='company_type']" position="attributes">
+                <attribute name="attrs">{'invisible': [('supplier_rank', '!=', 1)]}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='mobile']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='state_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='category_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//label[@for='mobile']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <!-- <xpath expr="//field[@name='name']" position="before">
+                 <groupe>
+                     <field name="tcs_ba_id"/>
+                 </groupe>
+             </xpath>-->
+        </field>
+    </record>
+    <record id="contacts.menu_contacts" model="ir.ui.menu">
+        <field name="name">Compte</field>
+    </record>
+    <record id="contacts.res_partner_menu_contacts" model="ir.ui.menu">
+        <field name="name">Compte</field>
+        <field name="sequence">1</field>
+    </record>
+    <record id="contacts.res_partner_menu_config" model="ir.ui.menu">
+        <field name="sequence">10</field>
+    </record>
+    <!--    <menuitem id="menu_account_final_customer_" parent="contacts.menu_contacts" name="Final Customers"
+                  action="kripton_base.res_partner_action_final_customer"
+                  sequence="2"/>
+        <menuitem id="res_partner_action_customer" parent="contacts.menu_contacts" name="Customers"
+                  action="account.res_partner_action_customer"
+                  sequence="1"/>-->
+    <menuitem id="res_partner_action_supplier_" parent="contacts.menu_contacts" name="Vendors"
+              groups="sales_team.group_sale_manager"
+              action="account.res_partner_action_supplier"
+              sequence="3"/>
+
+    <record id="contacts.action_contacts" model="ir.actions.act_window">
+        <field name="name">Compte</field>
+    </record>
+    <record id="project.menu_main_pm" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+    <record id="utm.menu_link_tracker_root" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+    <!--Modification 23/06/23-->
+    <!--    <menuitem name="Employees"
+                  id="menu_conqultants"
+                  sequence="20"
+                  web_icon="contacts,static/description/icon.png"
+                  action="hr.open_view_employee_list_my"/>-->
+    <menuitem name="Employees"
+              id="hr.menu_hr_root"
+              groups="sales_team.group_sale_manager"
+              sequence="20"
+              web_icon="kripton_base,static/description/employee.png"
+    />
+    <menuitem name="Clients"
+              id="menu_customers"
+              groups="sales_team.group_sale_manager"
+              sequence="18"
+              web_icon="kripton_base,static/description/contacts.png"
+              action="account.res_partner_action_customer"
+    />
+    <menuitem name="Vendors"
+              id="menu_vendors"
+              sequence="19"
+              groups="sales_team.group_sale_manager"
+              web_icon="kripton_base,static/description/img.png"
+              action="account.res_partner_action_supplier"
+    />
+    <record id="contacts.menu_contacts" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+    <record id="mail.menu_root_discuss" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+    <menuitem name="Services"
+              groups="sales_team.group_sale_manager"
+              id="menu_services"
+              sequence="21"
+              web_icon="kripton_base,static/description/services.png"
+              action="account.product_product_action_sellable"
+    />
+    <menuitem name="Invoicing"
+              id="account.menu_finance"
+              sequence="24"
+              web_icon="kripton_base,static/description/account.png"
+    />
+    <menuitem name="Subcontracts"
+              id="purchase.menu_purchase_root"
+              sequence="23"
+              web_icon="kripton_base,static/description/purchase.png"
+    />
+    <record id="account.product_product_action_sellable" model="ir.actions.act_window">
+        <field name="name">Services</field>
+    </record>
+    <record id="calendar.mail_menu_calendar" model="ir.ui.menu">
+        <field name="name">Actions</field>
+        <field name="sequence">5</field>
+        <field name="active">False</field>
+    </record>
+    <record id="hr.menu_hr_root" model="ir.ui.menu">
+        <field name="sequence">20</field>
+    </record>
+    <record id="calendar.action_calendar_event" model="ir.actions.act_window">
+        <field name="name">Actions</field>
+    </record>
+    <!--    Réunion 17/08/23-->
+
+    <record id="account.res_partner_action_customer" model="ir.actions.act_window">
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('customer_rank','>', 0),('is_company', '=', True)]</field>
+        <field name="context">{'search_default_customer': 1,'res_partner_search_mode': 'customer', 'default_is_company':
+            True, 'default_customer_rank': 1}
+        </field>
+
+
+    </record>
+    <record id="account.res_partner_action_supplier" model="ir.actions.act_window">
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('supplier_rank','>', 0),('is_company', '=', True)]</field>
+        <field name="context">{'search_default_supplier': 1,'res_partner_search_mode': 'supplier', 'default_is_company':
+            True, 'default_supplier_rank': 1}
+        </field>
+
+
+    </record>
+    <record id="purchase.purchase_rfq" model="ir.actions.act_window">
+        <field name="view_mode">tree,form</field>
+        <field name="name">Subcontracts</field>
+    </record>
+    <menuitem name="Final Customers"
+              id="menu_account_final_customer_"
+              groups="sales_team.group_sale_manager"
+              sequence="18"
+              web_icon="kripton_base,static/description/contacts.png"
+              action="kripton_base.res_partner_action_final_customer"
+    />
+    <!--    Réunion 25/09/23-->
+
+    <record id="sapres_view_partner_tree" model="ir.ui.view">
+        <field name="name">res.partner.tree.inherited</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='activity_ids']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+        </field>
+    </record>
+    <record id="account.menu_finance" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_no_one')])]"/>
+    </record>
+    <menuitem name="Invoices"
+              id="menu_action_move_out_invoice_type"
+              groups="sales_team.group_sale_manager"
+              sequence="1"
+              web_icon="kripton_base,static/description/account.png"
+              action="account.action_move_out_invoice_type"
+    />
+    <menuitem name="Payments"
+              id="action_move_in_invoice_type_"
+              groups="sales_team.group_sale_manager"
+              sequence="25"
+              web_icon="kripton_base,static/description/account.png"
+              action="account.action_move_in_invoice_type"
+    />
+    <record id="hr.menu_hr_employee" model="ir.ui.menu">
+        <field name="active">False</field>
+    </record>
+    <record id="res_partner_action_supplierConsultants" model="ir.actions.act_window">
+        <field name="name">Consultants</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('supplier_rank','>', 0),('is_company', '=', False)]</field>
+        <field name="context">{
+            'create': False
+            }
+        </field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new supplier in your address book
+            </p>
+            <p>
+                Odoo helps you easily track all activities related to a supplier.
+            </p>
+        </field>
+    </record>
+    <menuitem name="Consultants"
+              id="menu_consultant"
+              sequence="19"
+              groups="sales_team.group_sale_manager"
+              web_icon="kripton_base,static/description/img.png"
+              action="kripton_base.res_partner_action_supplierConsultants"
+    />
+
+</odoo>

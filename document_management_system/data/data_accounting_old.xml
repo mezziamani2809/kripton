@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="sapres_rep_2024_old" model="document.document">
+            <field name="name">2024</field>
+            <field name="old">True</field>
+        </record>
+        <!--                01 Januar        -->
+
+        <record id="sapres_sous_rep_januar_2024_old" model="document.document">
+            <field name="name">01 Januar</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2024_old"/>
+        </record>
+        <record id="sapres_sous_rep_januar_KONTOAUSZÜGE_2024_old" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_januar_ausgangsrechnungen_2024_old" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_januar_eingangsrechnungen_2024_old" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_januar_postbank_2024_old" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_januar_2024_old"/>
+            <field name="old">True</field>
+        </record>
+
+
+        <!--              02 Februar      -->
+
+        <record id="sapres_sous_rep_februar_2024_old" model="document.document">
+            <field name="name">02 Februar</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2024_old"/>
+        </record>
+        <record id="sapres_sous_rep_februar_KONTOAUSZÜGE_2024_old" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_februar_ausgangsrechnungen_2024_old" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_februar_eingangsrechnungen_2024_old" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_februar_postbank_2024_old" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_februar_2024_old"/>
+            <field name="old">True</field>
+        </record>
+
+        <!--             03 März     -->
+
+
+        <record id="sapres_sous_rep_marz_2024_old" model="document.document">
+            <field name="name">03 März</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2024_old"/>
+        </record>
+        <record id="sapres_sous_rep_marz_KONTOAUSZÜGE_2024_old" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_marz_ausgangsrechnungen_2024_old" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_2024_old"/>
+            <field name="old">True</field>
+
+        </record>
+        <record id="sapres_sous_rep_marz_eingangsrechnungen_2024_old" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_2024_old"/>
+            <field name="old">True</field>
+
+        </record>
+        <record id="sapres_sous_rep_marz_postbank_2024_old" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_marz_2024_old"/>
+            <field name="old">True</field>
+
+        </record>
+        <!--             04 April      -->
+
+
+        <record id="sapres_sous_rep_aprel_2024_old" model="document.document">
+            <field name="name">04 April</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2024_old"/>
+        </record>
+
+        <record id="sapres_sous_rep_aprel_KONTOAUSZÜGE_2024_old" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_2024_old"/>
+        </record>
+        <record id="sapres_sous_rep_aprel_ausgangsrechnungen_2024_old" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_aprel_eingangsrechnungen_2024_old" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_aprel_postbank_2024_old" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_aprel_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <!--             05 Mai     -->
+
+        <record id="sapres_sous_rep_mai_2024_old" model="document.document">
+            <field name="name">05 Mai</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2024_old"/>
+        </record>
+        <record id="sapres_sous_rep_mai_KONTOAUSZÜGE_2024_old" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_mai_ausgangsrechnungen_2024_old" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_mai_eingangsrechnungen_2024_old" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_mai_postbank_2024_old" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_mai_2024_old"/>
+            <field name="old">True</field>
+        </record>
+
+        <!--            06 Juni   -->
+
+        <record id="sapres_sous_rep_juni_2024_old" model="document.document">
+            <field name="name">06 Juni</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2024_old"/>
+        </record>
+        <record id="sapres_sous_rep_juni_KONTOAUSZÜGE_2024_old" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_juni_ausgangsrechnungen_2024_old" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_juni_eingangsrechnungen_2024_old" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_juni_postbank_2024_old" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juni_2024_old"/>
+            <field name="old">True</field>
+        </record>
+
+        <!--             07 Juli    -->
+
+        <record id="sapres_sous_rep_juli_2024_old" model="document.document">
+            <field name="name">07 Juli</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2024_old"/>
+        </record>
+        <record id="sapres_sous_rep_juli_KONTOAUSZÜGE_2024_old" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_juli_ausgangsrechnungen_2024_old" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_juli_eingangsrechnungen_2024_old" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_juli_postbank_2024_old" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_juli_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <!--              08 August    -->
+
+        <record id="sapres_sous_rep_august_old" model="document.document">
+            <field name="name">08 August</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2024_old"/>
+        </record>
+        <record id="sapres_sous_rep_august_KONTOAUSZÜGE_2024_old" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_august_ausgangsrechnungen_2024_old" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_august_eingangsrechnungen_2024_old" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_august_postbank_2024_old" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_august_old"/>
+            <field name="old">True</field>
+        </record>
+
+        <!--              09 September    -->
+
+        <record id="sapres_sous_rep_september_2024_old" model="document.document">
+            <field name="name">09 September</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2024_old"/>
+        </record>
+        <record id="sapres_sous_rep_september_KONTOAUSZÜGE_2024_old" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_september_ausgangsrechnungen_2024_old" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_2024_old"/>
+            <field name="old">True</field>
+
+        </record>
+        <record id="sapres_sous_rep_september_eingangsrechnungen_2024_old" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_september_postbank_2024_old" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_september_2024_old"/>
+            <field name="old">True</field>
+        </record>
+
+        <!--            10 Oktober     -->
+
+        <record id="sapres_sous_rep_oktober_2024_old" model="document.document">
+            <field name="name">10 Oktober</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2024_old"/>
+        </record>
+        <record id="sapres_sous_rep_oktober_KONTOAUSZÜGE_2024_old" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_oktober_ausgangsrechnungen_2024_old" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_oktober_eingangsrechnungen_2024_old" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_oktober_postbank_2024_old" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_oktober_2024_old"/>
+            <field name="old">True</field>
+        </record>
+
+        <!--           11 November   -->
+
+        <record id="sapres_sous_rep_november_2024_old" model="document.document">
+            <field name="name">11 November</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2024_old"/>
+        </record>
+        <record id="sapres_sous_rep_november_KONTOAUSZÜGE_2024_old" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_november_ausgangsrechnungen_2024_old" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_november_eingangsrechnungen_2024_old" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_november_postbank_2024_old" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_november_2024_old"/>
+            <field name="old">True</field>
+        </record>
+
+        <!--         12 Dezember    -->
+
+        <record id="sapres_sous_rep_dezember_2024_old" model="document.document">
+            <field name="name">12 Dezember</field>
+            <field name="old">True</field>
+            <field name="parent_id" ref="document_management_system.sapres_rep_2024_old"/>
+        </record>
+        <record id="sapres_sous_rep_dezember_KONTOAUSZÜGE_2024_old" model="document.document">
+            <field name="name">KONTOAUSZÜGE</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_dezember_ausgangsrechnungen_2024_old" model="document.document">
+            <field name="name">AUSGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_dezember_eingangsrechnungen_2024_old" model="document.document">
+            <field name="name">EINGANGSRECHNUNGEN</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_2024_old"/>
+            <field name="old">True</field>
+        </record>
+        <record id="sapres_sous_rep_dezember_postbank_2024_old" model="document.document">
+            <field name="name">POSTBANK</field>
+            <field name="parent_id" ref="document_management_system.sapres_sous_rep_dezember_2024_old"/>
+            <field name="old">True</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,14 @@
+<odoo>
+    <record id="action_payment_term_contract" model="ir.actions.act_window">
+    <field name="name">Payment Terms</field>
+    <field name="res_model">account.payment.term</field>
+    <field name="view_mode">tree,form</field>
+</record>
+
+<menuitem id="menu_payment_term_contract"
+          name="Payment Terms"
+          parent="sale.menu_sale_config"
+          action="action_payment_term_contract"
+          groups="group_manage_payment_terms"
+          sequence="20"/>
+</odoo>

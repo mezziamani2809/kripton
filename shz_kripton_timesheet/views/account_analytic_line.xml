@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="project_task_view_form_inherit_sale_timesheet_editable_quotation" model="ir.ui.view">
+        <field name="name">project.task.form.view.form.inherit.sale.timesheet.quotation</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='consultant_id']" position="attributes">
+                <attribute name="domain">['|',('employees_ids', '!=', False),'&amp;',('supplier_rank', '>',
+                    0),('is_company', '=', False) ]
+                </attribute>
+
+            </xpath>
+        </field>
+    </record>
+    <record id="consultant_space_form_view_inherited" model="ir.ui.view">
+        <field name="name">project.task.form.view.form.inherit.sale.timesheet.quotation</field>
+        <field name="model">consultant.space</field>
+        <field name="inherit_id" ref="kripton_timesheet.consultant_space_form_view"/>
+        <field name="priority">90</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='consultant_id']" position="attributes">
+                <attribute name="domain">['|',('employees_ids', '!=', False),'&amp;',('supplier_rank', '>',
+                    0),('is_company', '=', False) ]
+                </attribute>
+
+            </xpath>
+        </field>
+    </record>
+
+
+      <record id="search_consultant_space_action_all" model="ir.ui.view">
+        <field name="name">consultant.space.form.list</field>
+        <field name="model">consultant.space</field>
+        <field name="arch" type="xml">
+            <search string="Search Consultant Space">
+                <field string="Consultant" name="consultant_id"/>
+                <field string="Project" name="project_id"/>
+
+                <filter string="Consultants" domain="[('is_employee', '=', False)]" name="consultants_filter"/>
+                <filter string="Not Checked" domain="[('state', '=', 'draft')]" name="not_checked_filter"/>
+                <filter string="Checked" domain="[('state', '=', 'checked')]" name="checked_filter"/>
+                <group expand="0" string="Group By">
+                    <filter name="group_date" string="Start Date" domain="[]" context="{'group_by': 'date'}"/>
+                    <filter name="group_end_date" string="End Date" domain="[]" context="{'group_by': 'end_date'}"/>
+                    <filter name="group_state" string="Timesheets Status" domain="[]" context="{'group_by': 'state'}"/>
+                    <filter name="group_invoice_state" string="Invoices Status" domain="[]"
+                            context="{'group_by': 'invoice_state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="kripton_timesheet.consultant_space_action_all" model="ir.actions.act_window">
+        <field name="search_view_id" ref="shz_kripton_timesheet.search_consultant_space_action_all"/>
+    </record>
+</odoo>

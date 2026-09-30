@@ -1,0 +1,7 @@
+<odoo>
+    <record id="group_manage_payment_terms" model="res.groups">
+        <field name="name">Manage Payment Terms (Contrats)</field>
+        <field name="category_id" ref="base.module_category_sales_sales"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+</odoo>
